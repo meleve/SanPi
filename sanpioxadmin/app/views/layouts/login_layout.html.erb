@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SanPioX</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= nav_bar :static  => :top , brand: " SPX",:alt => " SPX", :title => " SPX" , :responsive => true do %>
+	<%= menu_group pull: :right do %>
+    	<%= menu_item " Entrar", new_usuario_session_path  %>
+    	<%= menu_item " Registro", new_usuario_registration_path %>
+    <% end %>
+<% end %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <% if notice %>
+                    <%= bootstrap_flash %> 
+                    <% end %>
+                    <% if alert %>
+                    <%= bootstrap_flash %> 
+                    <% end %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <%=yield%>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<p>
+  <strong>Curso:</strong>
+  <%= @curso.curso %>
+</p>
+
+<p>
+  <strong>Especalidad:</strong>
+  <%= @curso.especalidad %>
+</p>
+
+<p>
+  <strong>Seccion:</strong>
+  <%= @curso.seccion %>
+</p>
+
+<p>
+  <strong>Cuota:</strong>
+  <%= @curso.cuota %>
+</p>
+
+<p>
+  <strong>Matricula:</strong>
+  <%= @curso.matricula %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @curso.year %>
+</p>
+
+<%= link_to 'Editar', edit_curso_path(@curso) %> |
+<%= link_to 'Salir', cursos_path %>

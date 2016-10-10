@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  curso: MyString
+  especalidad: MyString
+  seccion: MyString
+  cuota: 1
+  matricula: 1
+  year: 1
+
+two:
+  curso: MyString
+  especalidad: MyString
+  seccion: MyString
+  cuota: 1
+  matricula: 1
+  year: 1

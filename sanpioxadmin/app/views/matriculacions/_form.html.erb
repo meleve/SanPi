@@ -1,0 +1,52 @@
+<%= form_for(@matriculacion) do |f| %>
+  <% if @matriculacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@matriculacion.errors.count, "error") %> prohibited this matriculacion from being saved:</h2>
+
+      <ul>
+      <% @matriculacion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='panel panel-default'>
+    <div class="panel-body">
+    <%= fields_for @alumno do |c| %>
+      <div class="col-lg-3 form-group has-success">
+              <%= glyph(:search) %>  <%= c.label ' Buscar', class: 'text-uppercase' %>
+              <%= c.autocomplete_field :ci, autocomplete_alumno_ci_alumnos_path, class: 'form-control input-sm', :placeholder => "Ingrese nro de cedula", :multiple => false, :update_elements => {:id => '#matriculacion_alumno_id',:nombre => '#alumno_nombre',:apellido => '#alumno_apellido'}, list: 'alumnos', autofocus: ''  %>
+      </div>
+    <% end %>
+
+      <div class="field">
+        <%= f.label :alumno_id %><br>
+        <%= f.collection_select(:alumno_id, Alumno.all, :id, :nombre, {prompt: true}, {:class=>'form-control input-sm'}) %>
+      </div>
+
+      <div class="form-group col-lg-4">
+        <%= c.label :nombre %><br>
+        <%= c.text_field :nombre, placeholder: 'Nombre', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= c.label :apellido %><br>
+        <%= c.text_field :apellido, placeholder: 'Apellido', class: 'form-control input-sm' %>
+      </div>
+    
+
+      <div class="field">
+        <%= f.label :curso_id %><br>
+        <%= f.number_field :curso_id %>
+      </div>
+    </div>
+
+    <div class="panel-footer">          
+      <div class="text-right">
+        <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
+          <span class="fa fa-check"></span> Guardar
+        <% end %>            
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,50 @@
+<%= form_for(@curso) do |f| %>
+  <% if @curso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@curso.errors.count, "error") %> prohibited this curso from being saved:</h2>
+
+      <ul>
+      <% @curso.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='panel panel-default'>
+    <div class="panel-body">
+      <div class="form-group col-lg-3">
+        <%= f.label :curso %>
+        <%= f.select :curso, options_for_select([['1º' ,'1º'], ['2º', '2º'], ['3º', '3º']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :especialidad %><br>
+        <%= f.select :especalidad, options_for_select([['Bachillerato con énfasis en Ciencias Sociales' ,'Bachillerato con énfasis en Ciencias Sociales'], ['Bachillerato Técnico en Informática', 'Bachillerato Técnico en Informática'], ['Bachillerato Técnico en Adm. de Negocios' ,'Bachillerato Técnico en Adm. de Negocios']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :seccion %><br>
+        <%= f.select :seccion, options_for_select([['Unica' ,'Unica'], ['A', 'A'], ['B' ,'B']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :cuota %><br>
+        <%= f.number_field :cuota, placeholder: 'Cuota', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :matricula %><br>
+        <%= f.number_field :matricula, placeholder: 'Matricula', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :año %><br>
+        <%= f.number_field :year, placeholder: 'Año', class: 'form-control input-sm' %>
+      </div>
+    </div>
+
+    <div class="panel-footer">          
+      <div class="text-right">
+        <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
+          <span class="fa fa-check"></span> Guardar
+        <% end %>            
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<div class="col-lg-4 col-lg-offset-4 well">
+  <fieldset>
+      <legend>Iniciar sesión</legend>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: 'form-control', require: '' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :contraseña %><br />
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control', require: '' %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="form-group">
+        <%= f.check_box :remember_me %>
+        <%= f.label :Recordar %>
+      </div>
+    <% end -%>
+
+    <div class="form-group">
+      <%= button_tag(type: 'submit', class: "btn btn-success btn-block") do %>
+        <span></span> Entrar
+      <% end %>
+    </div>
+    <%= render "usuarios/shared/links" %>
+  </fieldset>
+  <% end %>
+</div>

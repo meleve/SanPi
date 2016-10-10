@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Matriculacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Alumno</th>
+      <th>Curso</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matriculacions.each do |matriculacion| %>
+      <tr>
+        <td><%= matriculacion.alumno_id %></td>
+        <td><%= matriculacion.curso_id %></td>
+        <td><%= link_to 'Show', matriculacion %></td>
+        <td><%= link_to 'Edit', edit_matriculacion_path(matriculacion) %></td>
+        <td><%= link_to 'Destroy', matriculacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Matriculacion', new_matriculacion_path %>

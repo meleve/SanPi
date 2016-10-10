@@ -1,0 +1,75 @@
+<%= form_for(@alumno) do |f| %>
+  <% if @alumno.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@alumno.errors.count, "error") %> prohibited this alumno from being saved:</h2>
+
+      <ul>
+      <% @alumno.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='panel panel-default'>
+    <div class="panel-body">
+      <div class="form-group col-lg-4">
+        <%= f.label :nombre %><br>
+        <%= f.text_field :nombre, placeholder: 'Nombre', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :apellido %><br>
+        <%= f.text_field :apellido, placeholder: 'Apellido', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :ci %><br>
+        <%= f.text_field :ci, placeholder: 'C.I.', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :Fecha_de_Nacimiento %><br>
+        <%= f.date_select :fechanac, placeholder: 'Fecha de Nac.', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :Lugar_de_Nac %><br>
+        <%= f.text_field :lugarnac, placeholder: 'Lugar de Nac.', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :domicilio %><br>
+        <%= f.text_field :domicilio, placeholder: 'Domicilio', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+          <%= f.label :nombre_madre %><br>
+          <%= f.text_field :nombrema, placeholder: 'Nombre Madre', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+          <%= f.label :profesion_madre %><br>
+          <%= f.text_field :profesionma, placeholder: 'Profesión', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :contacto %><br>
+        <%= f.number_field :cel, placeholder: 'Nro de Telef.', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :nombre_padre %><br>
+        <%= f.text_field :nombrepa, placeholder: 'Nombre Padre', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :profesion_padre %><br>
+        <%= f.text_field :porfesionpa, placeholder: 'Profesion', class: 'form-control input-sm' %>
+      </div>
+      <div class="form-group col-lg-4">
+          <%= f.label :contacto %><br>
+          <%= f.number_field :celpa, placeholder: 'Nro de Telef.', class: 'form-control input-sm' %>
+      </div>
+    </div>
+
+      <div class="panel-footer">          
+        <div class="text-right">
+          <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
+            <span class="fa fa-check"></span> Guardar
+          <% end %>            
+        </div>
+      </div> 
+
+  </div>
+<% end %>

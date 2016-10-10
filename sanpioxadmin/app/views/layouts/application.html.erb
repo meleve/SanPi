@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SanPioX</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= nav_bar :static  => :top , brand: " SPX",:alt => " SPX", :title => " SPX" , :responsive => true do %>
+        <%= menu_group do %>
+        <% if usuario_signed_in? %>
+        <%= menu_item " Registro de Alumnos", "/alumnos" %>
+        <%= menu_item " Creacion de Curso", "/cursos" %>
+        <%= menu_item " Matriculacion", "/matriculacions" %>
+        <%= menu_item " Cuenta Corriente", "/cuenta" %>
+        <%= menu_item " Cobros", "/cobros" %>
+        <% end %>
+<% end %>
+        <%= menu_group pull: :right do %>
+        <% if usuario_signed_in? %>
+        <%= menu_item  current_usuario.email , "" %>
+        <%= menu_item  " Editar Perfil", edit_usuario_registration_path %>
+        <%= menu_item  " Salir", destroy_usuario_session_path, method: :delete, :class => 'text-danger',method: :delete, data: { confirm: 'Esta seguro?' }  %>
+        <% else %>
+        <%= menu_item  " Entrar", new_usuario_session_path  %>
+        <%= menu_item  " Registro", new_usuario_registration_path %>
+        <% end %>
+        <% end -%>
+        <% end %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <% if notice %>
+                    <%= bootstrap_flash %> 
+                    <% end %>
+                    <% if alert %>
+                    <%= bootstrap_flash %> 
+                    <% end %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="well">
+                    <%=yield%>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
