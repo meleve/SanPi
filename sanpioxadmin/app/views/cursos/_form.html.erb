@@ -11,40 +11,81 @@
     </div>
   <% end %>
 
+
   <div class='panel panel-default'>
     <div class="panel-body">
-      <div class="form-group col-lg-3">
-        <%= f.label :curso %>
+        <div class="form-group col-lg-3">
+          <%= f.label :curso %>
         <%= f.select :curso, options_for_select([['1º' ,'1º'], ['2º', '2º'], ['3º', '3º']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
-      </div>
-      <div class="form-group col-lg-3">
-        <%= f.label :especialidad %><br>
-        <%= f.select :especalidad, options_for_select([['Bachillerato con énfasis en Ciencias Sociales' ,'Bachillerato con énfasis en Ciencias Sociales'], ['Bachillerato Técnico en Informática', 'Bachillerato Técnico en Informática'], ['Bachillerato Técnico en Adm. de Negocios' ,'Bachillerato Técnico en Adm. de Negocios']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
-      </div>
-      <div class="form-group col-lg-3">
+        </div>
+        <div class="form-group col-lg-3">
+          <%= f.label :especialidad %><br>
+        <%= f.select :especialidad, options_for_select([['Bachillerato con énfasis en Ciencias Sociales' ,'Bachillerato con énfasis en Ciencias Sociales'], ['Bachillerato Técnico en Informática', 'Bachillerato Técnico en Informática'], ['Bachillerato Técnico en Adm. de Negocios' ,'Bachillerato Técnico en Adm. de Negocios']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
+        </div>
+        <div class="form-group col-lg-3">
         <%= f.label :seccion %><br>
         <%= f.select :seccion, options_for_select([['Unica' ,'Unica'], ['A', 'A'], ['B' ,'B']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
       </div>
-      <div class="form-group col-lg-3">
-        <%= f.label :cuota %><br>
-        <%= f.number_field :cuota, placeholder: 'Cuota', class: 'form-control input-sm' %>
-      </div>
-      <div class="form-group col-lg-3">
-        <%= f.label :matricula %><br>
-        <%= f.number_field :matricula, placeholder: 'Matricula', class: 'form-control input-sm' %>
-      </div>
-      <div class="form-group col-lg-3">
-        <%= f.label :año %><br>
-        <%= f.number_field :year, placeholder: 'Año', class: 'form-control input-sm' %>
-      </div>
+        <div class="field">
+          <%= f.label :Año %><br>
+          <%= f.number_field :year %>
+        </div>
     </div>
-
-    <div class="panel-footer">          
-      <div class="text-right">
-        <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
-          <span class="fa fa-check"></span> Guardar
-        <% end %>            
+<!-- Tabla de detalle-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="col-lg-2 form-group">
+          <label class="control-label">Cantidad</label>
+        </div>
+        <div class="col-lg-2 form-group">
+          <label class="control-label">Descripción</label>
+        </div>
+        <div class="col-lg-4 form-group">
+          <label class="control-label">Vencimiento</label>
+        </div>
+        <div class="col-lg-4 form-group">
+          <label class="control-label">Inporte</label>
+        </div>
       </div>
+
+      <div class="panel-footer">
+        <div class="text-right">
+          <div class="btn-group">
+            <%= f.add_nested_fields_link :detalle_cursos, glyph(:plus_sign) + '  Agregar', class: 'btn btn-primary btn-sm' %>
+            <%= link_to glyph(:refresh)+' Limpiar', "", type: 'reset', class: 'btn btn-default btn-sm' %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-12">
+        <%= f.nested_fields_for :detalle_cursos,  layout: :inline do |ff| %>
+        <%= ff.hidden_field :curso_id %>
+
+            
+            <div class="form-group col-lg-2">
+              <%= ff.number_field :cantidad, placeholder: 'Cantidad', class: 'form-control input-sm' %>
+            </div>
+            <div class="form-group col-lg-2">
+              <%= ff.text_field :descripcion, placeholder: 'Descripción', class: 'form-control input-sm' %>
+            </div>
+            <div class="form-group col-lg-4">
+              <%= ff.date_select :vencimiento, placeholder: 'Vencimiento', class: 'form-control input-sm' %>
+            </div>
+            <div class="form-group col-lg-2">
+              <%= ff.number_field :importe, placeholder: 'Importe', class: 'form-control input-sm' %>
+            </div>
+
+    
+
+      <div class="panel-footer">          
+        <div class="text-right">
+          <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
+            <span class="fa fa-check"></span> Guardar
+          <% end %>            
+        </div>
+      </div>
+      <% end %>
+
     </div>
   </div>
 <% end %>

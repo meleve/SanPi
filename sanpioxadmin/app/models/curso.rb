@@ -1,5 +1,5 @@
 class Curso < ActiveRecord::Base
-	belongs_to :alumno
+	has_many :detalle_cursos
 
-	validates :curso, :especalidad, :seccion, :cuota, :matricula, :year, presence: true
+	validates :curso, :especialidad, :seccion, :year, presence: true
 end

@@ -1,35 +1,33 @@
-<h1>Cursos</h1>
-<div class=" table-responsive">
-  <table class="table table-striped table-hover table-condensed">
-    <thead>
-      <tr>
-        <th>Curso</th>
-        <th>Especalidad</th>
-        <th>Seccion</th>
-        <th>Cuota</th>
-        <th>Matricula</th>
-        <th>Year</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+<p id="notice"><%= notice %></p>
 
-    <tbody>
-      <% @cursos.each do |curso| %>
-        <tr>
-          <td><%= curso.curso %></td>
-          <td><%= curso.especalidad %></td>
-          <td><%= curso.seccion %></td>
-          <td><%= curso.cuota %></td>
-          <td><%= curso.matricula %></td>
-          <td><%= curso.year %></td>
-          <td><%= link_to 'Mostrar', curso %></td>
-          <td><%= link_to 'Editar', edit_curso_path(curso) %></td>
-          <td><%= link_to 'Eliminar', curso, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<h1>Listing Cursos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Curso</th>
+      <th>Especialidad</th>
+      <th>Seccion</th>
+      <th>Year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cursos.each do |curso| %>
+      <tr>
+        <td><%= curso.curso %></td>
+        <td><%= curso.especialidad %></td>
+        <td><%= curso.seccion %></td>
+        <td><%= curso.year %></td>
+        <td><%= link_to 'Show', curso %></td>
+        <td><%= link_to 'Edit', edit_curso_path(curso) %></td>
+        <td><%= link_to 'Destroy', curso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <br>
 
-<%= link_to 'Nuevo', new_curso_path %>
+<%= link_to 'New Curso', new_curso_path %>

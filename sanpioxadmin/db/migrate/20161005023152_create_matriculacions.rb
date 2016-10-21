@@ -6,7 +6,5 @@ class CreateMatriculacions < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key(:matriculacions, :alumnos)
-    add_foreign_key(:matriculacions, :cursos)
   end
 end

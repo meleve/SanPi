@@ -2,16 +2,12 @@
 
 one:
   curso: MyString
-  especalidad: MyString
+  especialidad: MyString
   seccion: MyString
-  cuota: 1
-  matricula: 1
   year: 1
 
 two:
   curso: MyString
-  especalidad: MyString
+  especialidad: MyString
   seccion: MyString
-  cuota: 1
-  matricula: 1
   year: 1

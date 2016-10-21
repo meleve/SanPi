@@ -1,11 +1,13 @@
+<p id="notice"><%= notice %></p>
+
 <p>
   <strong>Curso:</strong>
   <%= @curso.curso %>
 </p>
 
 <p>
-  <strong>Especalidad:</strong>
-  <%= @curso.especalidad %>
+  <strong>Especialidad:</strong>
+  <%= @curso.especialidad %>
 </p>
 
 <p>
@@ -14,19 +16,9 @@
 </p>
 
 <p>
-  <strong>Cuota:</strong>
-  <%= @curso.cuota %>
-</p>
-
-<p>
-  <strong>Matricula:</strong>
-  <%= @curso.matricula %>
-</p>
-
-<p>
   <strong>Year:</strong>
   <%= @curso.year %>
 </p>
 
-<%= link_to 'Editar', edit_curso_path(@curso) %> |
-<%= link_to 'Salir', cursos_path %>
+<%= link_to 'Edit', edit_curso_path(@curso) %> |
+<%= link_to 'Back', cursos_path %>
