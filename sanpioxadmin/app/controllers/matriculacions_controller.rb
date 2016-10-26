@@ -82,4 +82,8 @@ class MatriculacionsController < ApplicationController
     def alumno_params
       params.require(:alumno).permit(:nombre, :apellido, :ci, :fechanac, :lugarnac, :domicilio, :nombrema, :profesionma, :cel, :nombrepa, :porfesionpa, :celpa)
     end
+
+    def curso_params
+      params.require(:curso).permit(:curso, :especialidad, :seccion, :year, detalle_curso_attributes: [ :curso_id, :cantidad, :descripcion, :vencimiento, :importe, :_destroy ])
+    end
 end

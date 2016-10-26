@@ -65,9 +65,11 @@
             <div class="form-group col-lg-2">
               <%= ff.number_field :cantidad, placeholder: 'Cantidad', class: 'form-control input-sm' %>
             </div>
+            
             <div class="form-group col-lg-2">
-              <%= ff.text_field :descripcion, placeholder: 'Descripción', class: 'form-control input-sm' %>
+              <%= ff.select :descripcion, options_for_select([['Matricula' ,'Matricula'], ['Cuota', 'Cuota'], ['Derecho de Examen' ,'Derecho de Examen'], ['Titulo', 'Titulo']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
             </div>
+
             <div class="form-group col-lg-4">
               <%= ff.date_select :vencimiento, placeholder: 'Vencimiento', class: 'form-control input-sm' %>
             </div>
@@ -75,7 +77,7 @@
               <%= ff.number_field :importe, placeholder: 'Importe', class: 'form-control input-sm' %>
             </div>
 
-    
+    <% end %>
 
       <div class="panel-footer">          
         <div class="text-right">
@@ -84,7 +86,7 @@
           <% end %>            
         </div>
       </div>
-      <% end %>
+      
 
     </div>
   </div>

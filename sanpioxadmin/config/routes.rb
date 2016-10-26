@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :detalle_cursos
-  resources :cursos
-  resources :matriculacions
   
+  resources :matriculacions
+  resources :cursos do
+   resources :detalle_cursos
+  end
 
   devise_for :usuarios,  controllers: { sessions: "usuarios/sessions", registrations: "usuarios/registrations", passwords: "usuarios/passwords"  }, :path_names => {:sign_in => 'login', :sign_up => 'registro', :sign_out => 'logout'}
     as :usuario do

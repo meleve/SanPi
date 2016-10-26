@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Curso:</strong>
   <%= @curso.curso %>
@@ -16,9 +14,34 @@
 </p>
 
 <p>
-  <strong>Year:</strong>
+  <strong>Año:</strong>
   <%= @curso.year %>
 </p>
 
-<%= link_to 'Edit', edit_curso_path(@curso) %> |
-<%= link_to 'Back', cursos_path %>
+<% @curso.detalle_cursos.each do |detalle| %>
+
+  <p>
+    <strong>Cantidad:</strong>
+    <%= detalle.cantidad %>
+  </p>
+
+  <p>
+    <strong>Descripcion:</strong>
+    <%= detalle.descripcion %>
+  </p>
+
+  <p>
+    <strong>Vencimiento:</strong>
+    <%= detalle.vencimiento %>
+  </p>
+
+  <p>
+    <strong>Importe:</strong>
+    <%= detalle.importe %>
+  </p>
+
+<% end %>
+
+
+<%= link_to 'Editar', edit_curso_path(@curso) %> |
+<%= link_to 'Salir', cursos_path %>
