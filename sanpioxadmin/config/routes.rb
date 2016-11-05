@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  
+  resources :movimientos
+  resources :cta_ctes
   resources :matriculacions
   resources :cursos do
    resources :detalle_cursos

@@ -21,12 +21,14 @@
             <%= f.select(:alumno_id, options_for_select(alumnos_array), {prompt: true}, {class: 'form-control input-sm'})  %>
       </div>
 
+
       <div class="col-lg-2 form-group">
             <%= f.label :curso_id %><br>
             <% cursos_array = Curso.all.map { |curso| [" #{curso.curso}  #{curso.especialidad}  ", curso.id ] }  %>
             <%= f.select(:curso_id, options_for_select(cursos_array), {prompt: true}, {class: 'form-control input-sm'})  %>
 
-        </div>
+      </div><%= link_to 'Config.', new_curso_path %>
+        
 
 
     </div>

@@ -1,4 +1,4 @@
-<h1>Cursos</h1>
+<h1>Cursos <%= link_to 'Nuevo Curso', new_curso_path, class: 'btn btn-primary btn-sm ' %></h1>
 <div class=" table-responsive">
 <table class="table table-striped table-hover table-condensed">
   <thead>
@@ -8,12 +8,11 @@
       <th>Seccion</th>
       <th>Año</th>
 
-      
-      <th>Cantidad</th>
+      <!--<th>Cantidad</th>
       <th>Descripcion</th>
       <th>Vencimiento</th>
       <th>Importe</th>
-      <th colspan="3"></th>
+      <th colspan="3"></th>-->
     </tr>
   </thead>
 
@@ -26,11 +25,11 @@
         <td><%= curso.year %></td>
 
         <% curso.detalle_cursos.each do |detalle| %>
-        <!--<td><%= detalle.curso_id %></td>-->
+        <!--<td><%= detalle.curso_id %></td>
         <td><%= detalle.cantidad %></td>
         <td><%= detalle.descripcion %></td>
         <td><%= detalle.vencimiento %></td>
-        <td><%= detalle.importe %></td>
+        <td><%= detalle.importe %></td>-->
         <% end %>
 
         <td><%= link_to 'Show', curso %></td>
@@ -43,4 +42,4 @@
 </div>
 
 
-<%= link_to 'Nuevo Curso', new_curso_path %>
+
