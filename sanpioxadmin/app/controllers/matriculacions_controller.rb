@@ -35,6 +35,24 @@ class MatriculacionsController < ApplicationController
 
     respond_to do |format|
       if @matriculacion.save
+      @cta_cte = CtaCte.new
+      @cta_cte.matriculacion_id = @matriculacion.id
+      @cta_cte.nro_cta_cte = @matriculacion.id
+      @cta_cte.save
+      #@curso = Curso.find(@matriculacion.curso_id)
+      #@detalle_cursos = DetalleCurso.all
+      @detalle_cursos = DetalleCurso.where(curso_id: @matriculacion.curso_id)
+
+      @movimiento = Movimiento.new
+
+      @detalle_cursos.each do |detalle|
+        (1..detalle.cantidad).each do |i|
+          @movimiento = Movimiento.create(cta_cte_id: @cta_cte.id, nro_mov:  i, descripcion: detalle.descripcion , importe: detalle.importe , estado: false)
+          
+        end
+      end
+
+
         format.html { redirect_to @matriculacion, notice: 'Matriculacion was successfully created.' }
         format.json { render :show, status: :created, location: @matriculacion }
       else
@@ -68,6 +86,39 @@ class MatriculacionsController < ApplicationController
     end
   end
 
+  def edit_multiple
+    @matriculacions = Matriculacion.find(params[:matriculacions_id])
+  end
+
+  def update_multiple
+    params[:matriculacions].keys.each do |matriculacion|
+      @matriculacion = Matriculacion.create(params[:matriculacions].values)
+     
+    @matriculacion = Matriculacion.find(matriculacion.to_i)
+      @cta_cte = CtaCte.new
+      @cta_cte.matriculacion_id = @matriculacion.id
+      @cta_cte.nro_cta_cte = @matriculacion.id
+      @cta_cte.save
+      #@curso = Curso.find(@matriculacion.curso_id)
+      #@detalle_cursos = DetalleCurso.all
+      @detalle_cursos = DetalleCurso.where(curso_id: @matriculacion.curso_id)
+
+      @movimiento = Movimiento.new
+
+      @detalle_cursos.each do |detalle|
+        (1..detalle.cantidad).each do |i|
+          @movimiento = Movimiento.create(cta_cte_id: @cta_cte.id, nro_mov:  i, descripcion: detalle.descripcion , importe: detalle.importe , estado: false)
+          
+        end
+      end
+    end
+
+
+    #Matriculacion.update(params[:matriculacions].keys, params[:matriculacions].values)
+    redirect_to matriculacions_url
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_matriculacion
@@ -86,4 +137,6 @@ class MatriculacionsController < ApplicationController
     def curso_params
       params.require(:curso).permit(:curso, :especialidad, :seccion, :year, detalle_curso_attributes: [ :curso_id, :cantidad, :descripcion, :vencimiento, :importe, :_destroy ])
     end
+
+    
 end

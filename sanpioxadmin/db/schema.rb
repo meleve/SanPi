@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011033549) do
+ActiveRecord::Schema.define(version: 20161107233644) do
 
   create_table "alumnos", force: :cascade do |t|
     t.string   "nombre",      limit: 255
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20161011033549) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "cta_ctes", force: :cascade do |t|
+    t.integer  "matriculacion_id", limit: 4
+    t.integer  "nro_cta_cte",      limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "cta_ctes", ["matriculacion_id"], name: "cta_ctes_matriculacion_id_fk", using: :btree
 
   create_table "cursos", force: :cascade do |t|
     t.string   "curso",        limit: 255
@@ -60,6 +69,18 @@ ActiveRecord::Schema.define(version: 20161011033549) do
 
   add_index "matriculacions", ["alumno_id"], name: "matriculacions_alumno_id_fk", using: :btree
   add_index "matriculacions", ["curso_id"], name: "matriculacions_curso_id_fk", using: :btree
+
+  create_table "movimientos", force: :cascade do |t|
+    t.integer  "cta_cte_id",  limit: 4
+    t.integer  "nro_mov",     limit: 4
+    t.string   "descripcion", limit: 255
+    t.integer  "importe",     limit: 4
+    t.boolean  "estado"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "movimientos", ["cta_cte_id"], name: "movimientos_cta_cte_id_fk", using: :btree
 
   create_table "usuarios", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

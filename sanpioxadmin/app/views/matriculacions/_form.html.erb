@@ -14,30 +14,25 @@
   <div class='panel panel-default'>
     <div class="panel-body">
     
-
       <div class="col-lg-2 form-group">
             <%= f.label :alumno_id %><br>
-            <% alumnos_array = Alumno.all.map { |alumno| [" #{alumno.nombre}  #{alumno.apellido} ", alumno.id ] }  %>
+            <% alumnos_array = Alumno.all.map { |alumno| [" #{alumno.ci} #{alumno.nombre}  #{alumno.apellido} ", alumno.id ] }  %>
             <%= f.select(:alumno_id, options_for_select(alumnos_array), {prompt: true}, {class: 'form-control input-sm'})  %>
       </div>
 
 
       <div class="col-lg-2 form-group">
             <%= f.label :curso_id %><br>
-            <% cursos_array = Curso.all.map { |curso| [" #{curso.curso}  #{curso.especialidad}  ", curso.id ] }  %>
+            <% cursos_array = Curso.all.map { |curso| [" #{curso.curso}  #{curso.especialidad} #{curso.year}  ", curso.id ] }  %>
             <%= f.select(:curso_id, options_for_select(cursos_array), {prompt: true}, {class: 'form-control input-sm'})  %>
+      </div>
 
-      </div><%= link_to 'Config.', new_curso_path %>
-        
-
-
-    </div>
-
-    <div class="panel-footer">          
-      <div class="text-right">
-        <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
-          <span class="fa fa-check"></span> Guardar
-        <% end %>            
+      <div class="panel-footer">          
+        <div class="text-right">
+          <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
+            <span class="fa fa-check"></span> Guardar
+          <% end %>            
+        </div>
       </div>
     </div>
   </div>

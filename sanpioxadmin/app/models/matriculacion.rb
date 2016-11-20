@@ -1,7 +1,9 @@
 class Matriculacion < ActiveRecord::Base
+	
 	belongs_to :alumno
 	
 	belongs_to :curso
+	has_many :cta_cte
 
 	validates :alumno_id, :curso_id, presence: true
 

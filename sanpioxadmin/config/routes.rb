@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   
+  
   resources :movimientos
   resources :cta_ctes
-  resources :matriculacions
+  resources :matriculacions do
+    collection do
+      get :edit_multiple
+      put :update_multiple
+    end
+  end
+
   resources :cursos do
    resources :detalle_cursos
   end

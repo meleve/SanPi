@@ -1,2 +1,0 @@
-json.extract! alumno, :id, :nombre, :apellido, :ci, :fechanac, :lugarnac, :domicilio, :nombrema, :profesionma, :cel, :nombrepa, :porfesionpa, :celpa, :created_at, :updated_at
-json.url alumno_url(alumno, format: :json)
