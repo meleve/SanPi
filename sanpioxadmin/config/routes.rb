@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   
-  resources :movimientos
+  resources :movimientos 
   resources :cta_ctes
   resources :matriculacions do
     collection do
