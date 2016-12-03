@@ -48,83 +48,90 @@
                 </div>
             </div>
         </div>
-
 <script type="text/javascript">
   $(function(){
     var oTable = $('#datatable');
     if (oTable.length) {
-    $('#datatable_filter').addClass('hidden-xs');
-    oTable.DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-          {
-              extend: "copy",
-              //text: '<i class="fa fa-files-o"></i>',
-              className: "btn-sm"
-          },
-          {
-              extend: "csv",
-              text: 'csv',
-              className: "btn-sm"
-          },
-          {
-              extend: "excel",
-              //text: '<i class="fa fa-file-excel-o"></i>',
-              className: "btn-sm"
-          },
-          {
-              extend: 'pdfHtml5',
-              //text: '<i class="fa fa-file-pdf-o"></i>',
-              
-             
-              //download: 'open',
-              className: "btn-sm",
-              exportOptions: {
-                  modifier: {
-                      page: 'current'
-                  }
-              }
-          },
+        $('#datatable_filter').addClass('hidden-xs');
+        oTable.DataTable({
+            dom: 'Bfrtip',
+            buttons: [
               {
-                  extend: "print",
-                  //text: '<i class="fa fa-print"></i>',
+                  extend: "copy",
+                  //text: '<i class="fa fa-files-o"></i>',
                   className: "btn-sm"
               },
-        ],
-        "bProcessing": true,
-        "sPaginationType": "full_numbers",
-        "paging": true,
-        "iDisplayLength": 10,
-        "bPaginate": true,
-        "bSort": true,
-        "oLanguage": {
-            "oPaginate": {
-                "sPrevious": "←",
-                "sNext": "→",
-                "sLast": "»",
-                "sFirst": "«"
-            },
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando de _START_ al _END_ de _TOTAL_ registros",
-            //"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando del 0 al 0 de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar: ",
-            "sUrl": "",
-            "sInfoThousands": ".",
-            "sLoadingRecords": "Cargando...",
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              {
+                  extend: "csv",
+                  text: 'csv',
+                  className: "btn-sm"
+              },
+              {
+                  extend: "excel",
+                  //text: '<i class="fa fa-file-excel-o"></i>',
+                  className: "btn-sm"
+              },
+              {
+                  extend: 'pdfHtml5',
+                  //text: '<i class="fa fa-file-pdf-o"></i>',
+                  customize: function (doc) {
+                      doc.content.splice(1, 0, {
+                          margin: [0, 0, 0, 0],
+                          width: 40,
+                          height: 40,
+                          alignment: 'left',
+                      });
+                  },
+                  message: 'Creado por @Usuario ',
+                  //download: 'open',
+                  className: "btn-sm",
+                  exportOptions: {
+                      modifier: {
+                          page: 'current'
+                      }
+                  }
+              },
+                  {
+                      extend: "print",
+                      text: '<i class="fa fa-print"></i>',
+                      className: "btn-sm"
+                  },
+            ],
+            "bProcessing": true,
+            "sPaginationType": "full_numbers",
+            "paging": true,
+            "iDisplayLength": 10,
+            "bPaginate": true,
+            "bSort": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sPrevious": "←",
+                    "sNext": "→",
+                    "sLast": "»",
+                    "sFirst": "«"
+                },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando de _START_ al _END_ de _TOTAL_ registros",
+                //"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando del 0 al 0 de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar: ",
+                "sUrl": "",
+                "sInfoThousands": ".",
+                "sLoadingRecords": "Cargando...",
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
             }
-        }
-    });
-  }
-            } )
+        });
+    }
+      });
 </script>
+
     </body>
 </html>

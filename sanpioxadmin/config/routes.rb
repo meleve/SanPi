@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     collection do
       get :edit_multiple
       put :update_multiple
+      get :index2
+      get :index3 
     end
   end
 
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
   resources :alumnos do
     get :autocomplete_alumno_ci, :on => :collection
   end
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

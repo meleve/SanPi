@@ -49,13 +49,14 @@ ActiveRecord::Schema.define(version: 20161107233644) do
   end
 
   create_table "detalle_cursos", force: :cascade do |t|
-    t.integer  "curso_id",    limit: 4
-    t.integer  "cantidad",    limit: 4
-    t.string   "descripcion", limit: 255
+    t.integer  "curso_id",     limit: 4
+    t.integer  "cantidad",     limit: 4
+    t.string   "descripcion",  limit: 255
     t.date     "vencimiento"
-    t.integer  "importe",     limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "importe",      limit: 4
+    t.integer  "totalimporte", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "detalle_cursos", ["curso_id"], name: "detalle_cursos_curso_id_fk", using: :btree

@@ -10,8 +10,16 @@ class MatriculacionsController < ApplicationController
   end
   
   def index
-    @matriculacions = Matriculacion.all
+    #@matriculacions = Matriculacion.where(curso_id: "2º")
+    @matriculacions = Matriculacion.where("curso_id LIKE ? ","%1%")
   end
+  def index2
+    @matriculacions = Matriculacion.where("curso_id LIKE ? ","%2%")
+  end
+  def index3
+    @matriculacions = Matriculacion.where("curso_id LIKE ? ","%3%")
+  end
+
 
   # GET /matriculacions/1
   # GET /matriculacions/1.json
