@@ -29,6 +29,16 @@ class CursosController < ApplicationController
 
     respond_to do |format|
       if @curso.save
+         @detalle_cursos = DetalleCurso.where(curso_id: @curso.id)
+         @resultado=0
+         @detalle_cursos.each do |detalle|
+          @resultado = detalle.cantidad * detalle.importe
+          if (@curso.montototal != nil)
+           @curso.update(montototal: @resultado + @curso.montototal)
+          else
+           @curso.update(montototal: @resultado)
+          end
+        end
         format.html { redirect_to @curso, notice: 'El curso se creo correctamente' }
         format.json { render :show, status: :created, location: @curso }
       else
@@ -70,6 +80,6 @@ class CursosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def curso_params
-      params.require(:curso).permit(:curso, :especialidad, :seccion, :year, detalle_cursos_attributes: [ :curso_id, :cantidad, :descripcion, :vencimiento, :importe, :_destroy ])
+      params.require(:curso).permit(:curso, :especialidad, :seccion, :year, :montototal, detalle_cursos_attributes: [ :curso_id, :cantidad, :descripcion, :vencimiento, :importe, :_destroy ])
     end
 end

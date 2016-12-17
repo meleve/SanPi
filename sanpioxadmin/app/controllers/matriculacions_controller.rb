@@ -24,6 +24,8 @@ class MatriculacionsController < ApplicationController
   # GET /matriculacions/1
   # GET /matriculacions/1.json
   def show
+    @cta_cte = CtaCte.find(@matriculacion.id) 
+    @movimientos = Movimiento.where(cta_cte_id: @cta_cte.id)
   end
 
   # GET /matriculacions/new
@@ -61,7 +63,7 @@ class MatriculacionsController < ApplicationController
       end
 
 
-        format.html { redirect_to @matriculacion, notice: 'Matriculacion was successfully created.' }
+        format.html { redirect_to @matriculacion, notice: 'Se creo correctamente' }
         format.json { render :show, status: :created, location: @matriculacion }
       else
         format.html { render :new }
@@ -120,12 +122,10 @@ class MatriculacionsController < ApplicationController
         end
       end
     end
-
-
     #Matriculacion.update(params[:matriculacions].keys, params[:matriculacions].values)
     redirect_to matriculacions_url
-    
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -143,7 +143,7 @@ class MatriculacionsController < ApplicationController
     end
 
     def curso_params
-      params.require(:curso).permit(:curso, :especialidad, :seccion, :year, detalle_curso_attributes: [ :curso_id, :cantidad, :descripcion, :vencimiento, :importe, :_destroy ])
+      params.require(:curso).permit(:curso, :especialidad, :seccion, :year, detalle_curso_attributes: [ :curso_id, :cantidad, :descripcion, :vencimiento, :importe, :totalimporte, :_destroy ])
     end
 
     

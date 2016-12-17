@@ -1,14 +1,91 @@
-<p>
-  <strong>Alumno:</strong>
-  <%= @matriculacion.alumno_id %>
-</p>
+<div class="page-header">
+  <h2>
+    Mira 
+  </h2>
+</div>
+<div class="table table-responsive">
+	<table class="table table-striped table-hover table-condensed">
+		<tbody>
+			<tr>
+				<td>
+					<strong>Alumno:</strong>
+		  			<%= @matriculacion.alumno.nombre %> <%= @matriculacion.alumno.apellido %>
+				</td>
 
-<p>
-  <strong>Curso:</strong>
-  <%= @matriculacion.curso_id %>
-</p>
+				<td>
+					<strong>Curso:</strong>
+		  			<%= @matriculacion.curso.curso %> <%= @matriculacion.curso.especialidad %> <%= @matriculacion.curso.year %>
+				</td>
+			</tr>
+		</tbody>  
+	</table>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Nro cta cte</th>
+    </tr>
+  </thead>
 
+  <tbody>
+      <tr>
+        <td><%= @cta_cte.nro_cta_cte %></td>
+      </tr>
+  </tbody>
+</table>
 
+<table class="table table-striped table-hover table-condensed dt-responsive" id="datatable">
+  <thead>
+    <tr>
+      
+      <th>Cta cte</th>
+      <th>Nro mov</th>
+      <th>Descripcion</th>
+      <th>Importe</th>
+      <th>Importe</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos.each do |movimiento| %>
+      <tr>
+        <td><%= movimiento.cta_cte_id %></td>
+        <td><%= movimiento.nro_mov %></td>
+        <td><%= movimiento.descripcion %></td>
+        <td><%= movimiento.importe %></td>
+        <td><%= movimiento.totalimporte %></td>
+        <td><%= movimiento.estado %></td>
+        <th>
+        	<%= link_to 'Pagar', edit_movimiento_path(movimiento.id) %>
+        </th>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Editar', edit_matriculacion_path(@matriculacion) %> |
 <%= link_to 'Salir', matriculacions_path %>
+
+<!-- Modal -->
+<div class="modal " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+        <form action="/movimientos" method="post">
+      <div class="modal-body">
+      	<input type="number" class="form-control" placeholder="Importe">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Pagar</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
