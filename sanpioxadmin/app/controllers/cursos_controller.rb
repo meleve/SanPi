@@ -10,6 +10,7 @@ class CursosController < ApplicationController
   # GET /cursos/1
   # GET /cursos/1.json
   def show
+    @matriculacions = Matriculacion.where(curso_id: @curso.id)
   end
 
   # GET /cursos/new

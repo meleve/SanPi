@@ -11,10 +11,8 @@
         <%= menu_group do %>
         <% if usuario_signed_in? %>
         <%= menu_item " Registro de Alumnos", "/alumnos" %>
-        <%= menu_item " Creacion de Curso", "/cursos" %>
+        <%= menu_item " Curso", "/cursos" %>
         <%= menu_item " Matriculacion", "/matriculacions" %>
-        <%= menu_item " Cuenta Corriente", "/cta_ctes" %>
-        <%= menu_item " Cobros", "/movimientos" %>
         <% end %>
 <% end %>
         <%= menu_group pull: :right do %>
@@ -48,6 +46,31 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+        $("#movimiento_totalimporte").val("");
+        $("#movimiento_totalimporte").focus();
+  $("form").submit(function(event) {
+    var importe = $("#movimiento_importe").val();
+    var totalimporte = $("#movimiento_totalimporte").val();
+    if (totalimporte != ""){
+      if (parseInt(totalimporte) > parseInt(importe)) {
+        $("#movimiento_totalimporte").val("");
+        $("#movimiento_totalimporte").focus();
+        alert("El importe no debe ser mayor al saldo");
+        event.preventDefault();
+      }
+      else {
+        $("form").submit();
+      }
+    }
+    else{
+      alert("Debes ingresar el importe a pagar");
+        $("#movimiento_totalimporte").val("");
+      $("#movimiento_totalimporte").focus();
+      event.preventDefault();
+    }
+  })
+</script>
 <script type="text/javascript">
   $(function(){
     var oTable = $('#datatable');

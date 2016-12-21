@@ -10,7 +10,6 @@ class MatriculacionsController < ApplicationController
   end
   
   def index
-    #@matriculacions = Matriculacion.where(curso_id: "2º")
     @matriculacions = Matriculacion.where("curso_id LIKE ? ","%1%")
   end
   def index2
@@ -52,16 +51,17 @@ class MatriculacionsController < ApplicationController
       #@curso = Curso.find(@matriculacion.curso_id)
       #@detalle_cursos = DetalleCurso.all
       @detalle_cursos = DetalleCurso.where(curso_id: @matriculacion.curso_id)
-
+      @suma = 0
       @movimiento = Movimiento.new
-
       @detalle_cursos.each do |detalle|
         (1..detalle.cantidad).each do |i|
           @movimiento = Movimiento.create(cta_cte_id: @cta_cte.id, nro_mov:  i, descripcion: detalle.descripcion , importe: detalle.importe , estado: false)
-          
+          @cta_ct = CtaCte.find(@cta_cte.id)
+          @suma += detalle.importe
+          @cta_ct.update(montoimporte: @suma)
         end
       end
-
+        
 
         format.html { redirect_to @matriculacion, notice: 'Se creo correctamente' }
         format.json { render :show, status: :created, location: @matriculacion }

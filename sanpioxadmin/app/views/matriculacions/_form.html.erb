@@ -1,39 +1,35 @@
 <%= form_for(@matriculacion) do |f| %>
-  <% if @matriculacion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@matriculacion.errors.count, "error") %> prohibited this matriculacion from being saved:</h2>
-
-      <ul>
-      <% @matriculacion.errors.full_messages.each do |message| %>
+<% if @matriculacion.errors.any? %>
+<div id="error_explanation">
+    <h2>
+        <%= pluralize(@matriculacion.errors.count, "error") %> prohibited this matriculacion from being saved:
+    </h2>
+    <ul>
+        <% @matriculacion.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class='panel panel-default'>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<div class='panel panel-default'>
     <div class="panel-body">
-    
-      <div class="col-lg-2 form-group">
+        <div class="col-lg-6 form-group">
             <%= f.label :alumno_id %><br>
             <% alumnos_array = Alumno.all.map { |alumno| [" #{alumno.ci} #{alumno.nombre}  #{alumno.apellido} ", alumno.id ] }  %>
             <%= f.select(:alumno_id, options_for_select(alumnos_array), {prompt: true}, {class: 'form-control input-sm'})  %>
-      </div>
-
-
-      <div class="col-lg-2 form-group">
+        </div>
+        <div class="col-lg-6 form-group">
             <%= f.label :curso_id %><br>
             <% cursos_array = Curso.all.map { |curso| [" #{curso.curso}  #{curso.especialidad} #{curso.year}  ", curso.id ] }  %>
             <%= f.select(:curso_id, options_for_select(cursos_array), {prompt: true}, {class: 'form-control input-sm'})  %>
-      </div>
-
-      <div class="panel-footer">          
-        <div class="text-right">
-          <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
-            <span class="fa fa-check"></span> Guardar
-          <% end %>            
         </div>
+    </div>
+    <div class="panel-footer">
+      <div class="text-right">
+          <%= button_tag(type: 'submit', class: "btn btn-success btn-sm") do %>
+          <span class="fa fa-check"></span> Guardar
+          <% end %>            
       </div>
     </div>
-  </div>
+</div>
 <% end %>

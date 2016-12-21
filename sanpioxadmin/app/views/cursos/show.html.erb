@@ -1,47 +1,66 @@
-<p>
-  <strong>Curso:</strong>
-  <%= @curso.curso %>
-</p>
-
-<p>
-  <strong>Especialidad:</strong>
-  <%= @curso.especialidad %>
-</p>
-
-<p>
-  <strong>Seccion:</strong>
-  <%= @curso.seccion %>
-</p>
-
-<p>
-  <strong>Año:</strong>
-  <%= @curso.year %>
-</p>
-
-<% @curso.detalle_cursos.each do |detalle| %>
-
-  <p>
-    <strong>Cantidad:</strong>
-    <%= detalle.cantidad %>
-  </p>
-
-  <p>
-    <strong>Descripcion:</strong>
-    <%= detalle.descripcion %>
-  </p>
-
-  <p>
-    <strong>Vencimiento:</strong>
-    <%= detalle.vencimiento %>
-  </p>
-
-  <p>
-    <strong>Importe:</strong>
-    <%= detalle.importe %>
-  </p>
-
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Curso</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-lg-8">
+            <p>
+                <strong>Curso:</strong>
+                <%= @curso.curso %> <%= @curso.especialidad %>
+            </p>
+        </div>
+        <div class="col-lg-2">
+            <p>
+                <strong>Seccion:</strong>
+                <%= @curso.seccion %>
+            </p>
+        </div>
+        <div class="col-lg-2">
+            <p>
+                <strong>Año:</strong>
+                <%= @curso.year %>
+            </p>
+        </div>
+    </div>
+</div>
+        <%= form_tag edit_multiple_matriculacions_path, method: :get  do %>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+        <%= link_to 'Editar', edit_curso_path(@curso), class: 'btn btn-xs btn-default' %>  <%= link_to 'Salir', cursos_path, class: 'btn btn-xs btn-default' %>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover table-condensed dt-responsive" id="datatable" >
+            <thead>
+                <tr>
+                    <th>Alumno</th>
+                    <th>Curso</th>
+                    <th>Año</th>
+                    <th><input type="checkbox" id="selectAll" value="selectAll"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @matriculacions.each do |matriculacion| %>
+                <tr>
+                    <td><%= matriculacion.alumno.nombre %> <%= matriculacion.alumno.apellido %></td>
+                    <td><%= matriculacion.curso.curso %></td>
+                    <td><%= matriculacion.curso.year %></td>
+                    <td><%= check_box_tag "matriculacions_id[]", matriculacion.id %></td>
+                    <td><%= link_to glyph(:eye_open)+'', matriculacion, class: 'btn btn-link btn-sm' %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="panel-footer">
+      <div class="text-right">
+        <%= submit_tag "Matricular", class: "btn btn-primary btn-sm", title: 'Matricular todo' %>
+        <%= link_to glyph(:plus_sign)+ 'Matricular', new_matriculacion_path, class: 'btn btn-primary btn-sm', title: 'Matricular' %>
+        
+      </div>
+    </div>
+</div>
 <% end %>
-
-
-<%= link_to 'Editar', edit_curso_path(@curso) %> |
-<%= link_to 'Salir', cursos_path %>
