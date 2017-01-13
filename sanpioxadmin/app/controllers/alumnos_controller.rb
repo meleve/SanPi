@@ -49,7 +49,7 @@ before_filter do
 
     respond_to do |format|
       if @alumno.save
-        format.html { redirect_to @alumno, notice: 'Alumno was successfully created.' }
+        format.html { redirect_to @alumno, notice: 'Se ha creado correctamente.' }
         format.json { render :show, status: :created, location: @alumno }
       else
         format.html { render :new }

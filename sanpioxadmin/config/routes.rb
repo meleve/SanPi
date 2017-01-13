@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   
   
-  resources :movimientos 
+  resources :productos
+ 
+ resources :movimientos do
+    collection do
+      put :pago_conjunto
+    end
+  end
   resources :cta_ctes
   resources :matriculacions do
     collection do

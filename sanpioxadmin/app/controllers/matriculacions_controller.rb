@@ -23,6 +23,7 @@ class MatriculacionsController < ApplicationController
   # GET /matriculacions/1
   # GET /matriculacions/1.json
   def show
+    @productos = Producto.all
     @cta_cte = CtaCte.find(@matriculacion.id) 
     @movimientos = Movimiento.where(cta_cte_id: @cta_cte.id)
   end
@@ -101,10 +102,8 @@ class MatriculacionsController < ApplicationController
   end
 
   def update_multiple
-    params[:matriculacions].keys.each do |matriculacion|
-      @matriculacion = Matriculacion.create(params[:matriculacions].values)
-     
-    @matriculacion = Matriculacion.find(matriculacion.to_i)
+    params[:matriculacions].values.each do |matriculacion|
+      @matriculacion = Matriculacion.create(alumno_id: matriculacion['alumno_id'].to_i, curso_id: matriculacion['curso_id'].to_i)
       @cta_cte = CtaCte.new
       @cta_cte.matriculacion_id = @matriculacion.id
       @cta_cte.nro_cta_cte = @matriculacion.id
@@ -118,7 +117,8 @@ class MatriculacionsController < ApplicationController
       @detalle_cursos.each do |detalle|
         (1..detalle.cantidad).each do |i|
           @movimiento = Movimiento.create(cta_cte_id: @cta_cte.id, nro_mov:  i, descripcion: detalle.descripcion , importe: detalle.importe , estado: false)
-          
+          sumaimporte = @cta_cte.montoimporte.to_i + detalle.importe.to_i
+          @cta_cte.update(montoimporte: sumaimporte)
         end
       end
     end

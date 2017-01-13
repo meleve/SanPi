@@ -49,42 +49,74 @@
   </div>
 </div>
 <hr />
+
+<%= form_tag pago_conjunto_movimientos_path, method: :put  do %>
+<table class="table table-striped table-hover table-condensed dt-responsive" id="producto">
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Descripción</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th><input type="checkbox" id="selectAll" value="selectAll"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productos.each do |producto| %>
+      <tr>
+        <td><%= producto.nombreproduct %></td>
+        <td><%= producto.descripcion %></td>
+        <td>
+          <input type="number" name="<%= producto.id %>" class="form-control input-sm" autocomplete="off" value="<%= producto.cantidad %>">
+        </td>
+        <td><%= producto.precio %></td>
+        <td><%= check_box_tag "productos_id[]", producto.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
 <table class="table table-striped table-hover table-condensed dt-responsive" id="datatable">
   <thead>
     <tr>
-      
-      <th>Cta cte</th>
-      <th>Nro mov</th>
+
+      <th>Cuota Nº</th>
       <th>Descripcion</th>
-      <th>Importe</th>
       <th>Importe</th>
       <th>Estado</th>
       <th></th>
+      <th><input type="checkbox" id="selectAll" value="selectAll"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @movimientos.each do |movimiento| %>
       <tr>
-        <td><%= movimiento.cta_cte_id %></td>
         <td><%= movimiento.nro_mov %></td>
         <td><%= movimiento.descripcion %></td>
         <td><%= movimiento.importe %></td>
-        <td><%= movimiento.totalimporte %></td>
         <% if movimiento.estado == false %>
         	<td><label class="label label-warning">Pendiente</label></td>
         <% else %>
         	<td><label class="label label-success">Pagado</label></td>
         <% end %>
         <th>
-        	<%= link_to 'Pagar', edit_movimiento_path(movimiento.id) %>
+        	<%= link_to 'Pagar', edit_movimiento_path(movimiento.id), class: 'btn btn-link btn-sm' %>
         </th>
-        
+        <th><%= check_box_tag "movimientos_id[]", movimiento.id %></th>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Editar', edit_matriculacion_path(@matriculacion) %> |
-<%= link_to 'Salir', matriculacions_path %>
-
+<div class="panel-footer">
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-sm tip" title="Matricular todo"><i class="glyphicon glyphicon-plus-sign"></i> Pagar</button>
+            
+        </div>
+    </div>
+<%= link_to glyph(:arrow_left) +'Volver', cursos_path %>
+<% end %>

@@ -23,11 +23,12 @@
         </div>
     </div>
 </div>
-        <%= form_tag edit_multiple_matriculacions_path, method: :get  do %>
+<%= form_tag edit_multiple_matriculacions_path, method: :get  do %>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-        <%= link_to 'Editar', edit_curso_path(@curso), class: 'btn btn-xs btn-default' %>  <%= link_to 'Salir', cursos_path, class: 'btn btn-xs btn-default' %>
+            <%= link_to glyph(:arrow_left) +'Salir', cursos_path, class: 'btn btn-link btn-sm' %> <%= link_to glyph(:pencil)+ 'Editar', edit_curso_path(@curso), class: 'btn btn-link btn-sm' %>  
+            
         </h3>
     </div>
     <div class="panel-body">
@@ -53,14 +54,12 @@
                 <% end %>
             </tbody>
         </table>
-        
     </div>
     <div class="panel-footer">
-      <div class="text-right">
-        <%= submit_tag "Matricular", class: "btn btn-primary btn-sm", title: 'Matricular todo' %>
-        <%= link_to glyph(:plus_sign)+ 'Matricular', new_matriculacion_path, class: 'btn btn-primary btn-sm', title: 'Matricular' %>
-        
-      </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-sm tip" title="Matricular todo"><i class="glyphicon glyphicon-plus-sign"></i> Matricular todo</button>
+            <%= link_to glyph(:plus_sign)+ ' Matricular', new_matriculacion_path, class: 'btn btn-primary btn-sm tip', title: 'Matricular' %>
+        </div>
     </div>
 </div>
 <% end %>

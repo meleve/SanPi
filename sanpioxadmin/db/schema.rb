@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215010151) do
+ActiveRecord::Schema.define(version: 20170112185325) do
 
   create_table "alumnos", force: :cascade do |t|
     t.string   "nombre",      limit: 255
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20161215010151) do
 
   add_index "movimientos", ["cta_cte_id"], name: "movimientos_cta_cte_id_fk", using: :btree
   add_index "movimientos", ["totalimporte"], name: "index_movimientos_on_totalimporte", using: :btree
+
+  create_table "productos", force: :cascade do |t|
+    t.string   "nombreproduct", limit: 255
+    t.string   "descripcion",   limit: 255
+    t.integer  "cantidad",      limit: 4
+    t.integer  "precio",        limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "usuarios", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

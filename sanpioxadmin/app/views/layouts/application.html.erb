@@ -13,6 +13,7 @@
         <%= menu_item " Registro de Alumnos", "/alumnos" %>
         <%= menu_item " Curso", "/cursos" %>
         <%= menu_item " Matriculacion", "/matriculacions" %>
+        <%= menu_item " Productos", "/productos" %>
         <% end %>
 <% end %>
         <%= menu_group pull: :right do %>
@@ -73,7 +74,8 @@
 </script>
 <script type="text/javascript">
   $(function(){
-    var oTable = $('#datatable');
+    $('.tip').tooltip();
+    var oTable = $('#datatable, #producto');
     if (oTable.length) {
         $('#datatable_filter').addClass('hidden-xs');
         oTable.DataTable({
@@ -154,6 +156,19 @@
         });
     }
       });
+</script>
+<script type="text/javascript">
+  $('#selectAll').click(function() {
+   if (this.checked) {
+       $(':checkbox').each(function() {
+           this.checked = true;                        
+       });
+   } else {
+      $(':checkbox').each(function() {
+           this.checked = false;                        
+       });
+   } 
+  });
 </script>
 
     </body>
