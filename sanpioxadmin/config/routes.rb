@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
   
+  resources :mov_cajas
+  resources :cajas
+  resources :mov_cajas
+  resources :cajas
   resources :productos
  
  resources :movimientos do

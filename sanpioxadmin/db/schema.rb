@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112185325) do
+ActiveRecord::Schema.define(version: 20170118002556) do
 
   create_table "alumnos", force: :cascade do |t|
     t.string   "nombre",      limit: 255
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(version: 20170112185325) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "cajas", force: :cascade do |t|
+    t.integer  "usuario_id",    limit: 4
+    t.datetime "fechaApertura"
+    t.datetime "fechaCierre"
+    t.integer  "apertura",      limit: 4
+    t.integer  "cierre",        limit: 4
+    t.integer  "entrada",       limit: 4
+    t.integer  "salida",        limit: 4
+    t.boolean  "estado"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "cajas", ["usuario_id"], name: "cajas_usuario_id_fk", using: :btree
 
   create_table "cta_ctes", force: :cascade do |t|
     t.integer  "matriculacion_id", limit: 4
@@ -75,6 +90,18 @@ ActiveRecord::Schema.define(version: 20170112185325) do
 
   add_index "matriculacions", ["alumno_id"], name: "matriculacions_alumno_id_fk", using: :btree
   add_index "matriculacions", ["curso_id"], name: "matriculacions_curso_id_fk", using: :btree
+
+  create_table "mov_cajas", force: :cascade do |t|
+    t.integer  "caja_id",    limit: 4
+    t.string   "concepto",   limit: 255
+    t.integer  "ingreso",    limit: 4
+    t.integer  "egreso",     limit: 4
+    t.integer  "saldo",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "mov_cajas", ["caja_id"], name: "mov_cajas_caja_id_fk", using: :btree
 
   create_table "movimientos", force: :cascade do |t|
     t.integer  "cta_cte_id",   limit: 4
