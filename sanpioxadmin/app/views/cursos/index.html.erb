@@ -1,3 +1,11 @@
+<% if cajaabierto != nil %>
+<b>Caja abierta</b>
+<% else %>
+  <script type="text/javascript">
+    window.location.replace("http://localhost:3000/cajas/new");
+  </script>
+<% end %>
+
 <div class="page-header">
   <h2>
     Crear Cursos <%= link_to glyph(:plus_sign)+ 'Agregar', new_curso_path, class: 'btn btn-primary btn-sm pull-right' %>

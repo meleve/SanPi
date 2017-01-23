@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  resources :pagos_servicios
+  resources :cierre_cajas
   resources :mov_cajas
   resources :cajas
   resources :mov_cajas
@@ -38,13 +40,24 @@ Rails.application.routes.draw do
     get :autocomplete_alumno_ci, :on => :collection
   end
 
-  
+  cajaabierto = nil
+  cajaabierto = Caja.where(estado: 0).last
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'alumnos#index'
+
+  if cajaabierto != nil
+    root 'alumnos#index'
+  else
+    root 'cajas#new'
+  end
+  
+
+
+
+  #root 'alumnos#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

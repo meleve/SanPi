@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118002556) do
+ActiveRecord::Schema.define(version: 20170120014525) do
 
   create_table "alumnos", force: :cascade do |t|
     t.string   "nombre",      limit: 255
@@ -44,6 +44,19 @@ ActiveRecord::Schema.define(version: 20170118002556) do
   end
 
   add_index "cajas", ["usuario_id"], name: "cajas_usuario_id_fk", using: :btree
+
+  create_table "cierre_cajas", force: :cascade do |t|
+    t.integer  "usuario_id", limit: 4
+    t.datetime "fApertura"
+    t.datetime "fCierre"
+    t.integer  "apertura",   limit: 4
+    t.integer  "cierre",     limit: 4
+    t.integer  "entrada",    limit: 4
+    t.integer  "salida",     limit: 4
+    t.boolean  "estado"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "cta_ctes", force: :cascade do |t|
     t.integer  "matriculacion_id", limit: 4
@@ -116,6 +129,13 @@ ActiveRecord::Schema.define(version: 20170118002556) do
 
   add_index "movimientos", ["cta_cte_id"], name: "movimientos_cta_cte_id_fk", using: :btree
   add_index "movimientos", ["totalimporte"], name: "index_movimientos_on_totalimporte", using: :btree
+
+  create_table "pagos_servicios", force: :cascade do |t|
+    t.string   "servicio",   limit: 255
+    t.integer  "monto",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "productos", force: :cascade do |t|
     t.string   "nombreproduct", limit: 255
