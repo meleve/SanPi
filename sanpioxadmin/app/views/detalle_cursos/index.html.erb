@@ -1,0 +1,36 @@
+
+<h1>Listing Detalle Cursos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Curso</th>
+      <th>Cantidad</th>
+      <th>Descripcion</th>
+      <th>Vencimiento</th>
+      <th>Importe</th>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @detalle_cursos.each do |detalle_curso| %>
+      <tr>
+        <td><%= detalle_curso.curso_id %></td>
+        <td><%= detalle_curso.cantidad %></td>
+        <td><%= detalle_curso.descripcion %></td>
+        <td><%= detalle_curso.vencimiento %></td>
+        <td><%= detalle_curso.importe %></td>
+        <td><%= detalle_curso.totalimporte %></td>
+        <td><%= link_to 'Show', detalle_curso %></td>
+        <td><%= link_to 'Edit', edit_detalle_curso_path(detalle_curso) %></td>
+        <td><%= link_to 'Destroy', detalle_curso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Detalle curso', new_detalle_curso_path %>

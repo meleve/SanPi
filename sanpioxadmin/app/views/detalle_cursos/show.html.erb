@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Curso:</strong>
+  <%= @detalle_curso.curso_id %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @detalle_curso.cantidad %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @detalle_curso.descripcion %>
+</p>
+
+<p>
+  <strong>Vencimiento:</strong>
+  <%= @detalle_curso.vencimiento %>
+</p>
+
+<p>
+  <strong>Importe:</strong>
+  <%= @detalle_curso.importe %>
+</p>
+
+<p>
+  <strong>TotalImporte:</strong>
+  <%= @detalle_curso.totalimporte %>
+</p>
+
+<%= link_to 'Edit', edit_detalle_curso_path(@detalle_curso) %> |
+<%= link_to 'Back', detalle_cursos_path %>

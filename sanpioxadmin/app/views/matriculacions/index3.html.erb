@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h1>
+    Matriculación <%= link_to glyph(:plus_sign)+ 'Matricular', new_matriculacion_path, class: 'btn btn-primary btn-sm pull-right' %>
+    
+  </h1>
+</div>
+
+<ul class="nav nav-tabs">
+  <li class=""  ><%= link_to '1º Cs Sc', matriculacions_path %></li>
+  <li class="" ><%= link_to '2º Cs Sc', index2_matriculacions_path %></li>
+  <li class="active" ><%= link_to '3º Cs Sc', index3_matriculacions_path %></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  
+  <div class="tab-pane fade active in">
+    <%= form_tag edit_multiple_matriculacions_path, method: :get  do %>
+        <table class="table table-striped table-hover table-condensed dt-responsive" id="datatable" >
+          <thead>
+            <tr>
+              <th>Alumno</th>
+              <th>Curso</th>
+              <th>Año</th>
+              <th><input type="checkbox" id="selectAll" value="selectAll"></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @matriculacions.each do |matriculacion| %>
+              <tr>
+                <td><%= matriculacion.alumno.nombre %> <%= matriculacion.alumno.apellido %></td>
+                <td><%= matriculacion.curso.curso %></td>
+                <td><%= matriculacion.curso.year %></td>
+                <td><%= check_box_tag "matriculacions_id[]", matriculacion.id %></td>
+                <td><%= link_to glyph(:eye_open)+'', matriculacion, class: 'btn btn-link btn-sm' %></td>
+                
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= submit_tag "Matricular", class: "btn btn-primary btn-sm pull-right" %>
+      <% end %>
+  </div>
+  
+</div>
+
+
