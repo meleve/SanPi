@@ -1,0 +1,39 @@
+<h1>Listing Cierre Cajas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Fapertura</th>
+      <th>Fcierre</th>
+      <th>Apertura</th>
+      <th>Cierre</th>
+      <th>Entrada</th>
+      <th>Salida</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cierre_cajas.each do |cierre_caja| %>
+      <tr>
+        <td><%= cierre_caja.usuario_id %></td>
+        <td><%= cierre_caja.fApertura %></td>
+        <td><%= cierre_caja.fCierre %></td>
+        <td><%= cierre_caja.apertura %></td>
+        <td><%= cierre_caja.cierre %></td>
+        <td><%= cierre_caja.entrada %></td>
+        <td><%= cierre_caja.salida %></td>
+        <td><%= cierre_caja.estado %></td>
+        <td><%= link_to 'Show', cierre_caja %></td>
+        <td><%= link_to 'Edit', edit_cierre_caja_path(cierre_caja) %></td>
+        <td><%= link_to 'Destroy', cierre_caja, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cierre caja', new_cierre_caja_path %>

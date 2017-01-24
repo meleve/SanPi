@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @cierre_caja.usuario_id %>
+</p>
+
+<p>
+  <strong>Fapertura:</strong>
+  <%= @cierre_caja.fApertura %>
+</p>
+
+<p>
+  <strong>Fcierre:</strong>
+  <%= @cierre_caja.fCierre %>
+</p>
+
+<p>
+  <strong>Apertura:</strong>
+  <%= @cierre_caja.apertura %>
+</p>
+
+<p>
+  <strong>Cierre:</strong>
+  <%= @cierre_caja.cierre %>
+</p>
+
+<p>
+  <strong>Entrada:</strong>
+  <%= @cierre_caja.entrada %>
+</p>
+
+<p>
+  <strong>Salida:</strong>
+  <%= @cierre_caja.salida %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @cierre_caja.estado %>
+</p>
+
+<%= link_to 'Edit', edit_cierre_caja_path(@cierre_caja) %> |
+<%= link_to 'Back', cierre_cajas_path %>

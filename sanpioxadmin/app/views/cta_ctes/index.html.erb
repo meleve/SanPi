@@ -1,0 +1,27 @@
+<h1>Cuenta Corriente</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Matriculacion</th>
+      <th>Nro cta cte</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cta_ctes.each do |cta_cte| %>
+      <tr>
+        <td><%= cta_cte.matriculacion_id %></td>
+        <td><%= cta_cte.nro_cta_cte %></td>
+        <td><%= link_to 'Show', cta_cte %></td>
+        <td><%= link_to 'Edit', edit_cta_cte_path(cta_cte) %></td>
+        <td><%= link_to 'Destroy', cta_cte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cta cte', new_cta_cte_path %>

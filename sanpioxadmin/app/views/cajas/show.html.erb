@@ -1,0 +1,85 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-lg-4">
+      <p>
+        <strong>Usuario:</strong>
+          <%= @caja.usuario.email %>
+        </p>
+    </div>
+
+    <div class="col-lg-4">
+        <p>
+          <strong>Fechaapertura:</strong>
+          <%= @caja.fechaApertura %>
+        </p>
+    </div>
+    <div class="col-lg-4">
+        <p>
+          <strong>Fechacierre:</strong>
+          <%= @caja.fechaCierre %>
+        </p>
+    </div>
+    <div class="col-lg-4">
+      <p>
+          <strong>Apertura:</strong>
+          <%= @caja.apertura %>
+        </p>
+    </div>
+    <div class="col-lg-4">
+        <p>
+          <strong>Cierre:</strong>
+          <%= @caja.cierre %>
+        </p>
+    </div>
+    <div class="col-lg-4">
+      <p>
+          <strong>Entrada:</strong>
+          <%= @caja.entrada %>
+        </p>
+    </div>
+    <div class="col-lg-4">
+      <p>
+          <strong>Salida:</strong>
+          <%= @caja.salida %>
+        </p>
+    </div>
+    <div class="col-lg-4">
+      <p>
+        <strong>Estado:</strong>
+        <%= @caja.estado %>
+      </p>
+    </div>  
+          
+  </div>  
+</div>
+
+<div class="panel panel-default">
+  <table class="table table-striped table-hover table-condensed dt-responsive" id="datatable">
+    <div class="panel-body">
+        <thead>
+          <tr>
+            <th>Caja Nro</th>
+            <th>Concepto</th>
+            <th>Ingreso</th>
+            <th>Egreso</th>
+            <th>Saldo</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @mov_caja.each do |mov| %>
+            <tr>
+              <td><%= mov.caja_id %></td>
+              <td><%= mov.concepto %></td>
+              <td><%= mov.ingreso %></td>
+              <td><%= mov.egreso %></td>
+              <td><%= mov.saldo %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<%= link_to 'Edit', edit_caja_path(@caja) %> |
+<%= link_to 'Back', cajas_path %>

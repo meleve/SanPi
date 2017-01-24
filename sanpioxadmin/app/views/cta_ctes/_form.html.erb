@@ -1,0 +1,32 @@
+<%= form_for(@cta_cte) do |f| %>
+  <% if @cta_cte.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cta_cte.errors.count, "error") %> prohibited this cta_cte from being saved:</h2>
+
+      <ul>
+      <% @cta_cte.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class='panel panel-default'>
+    <div class="panel-body">
+      <div class="form-group col-lg-4">
+        <%= f.label :matriculacion_id %><br>
+        <%= f.number_field :matriculacion_id %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :nro_cta_cte %><br>
+        <%= f.number_field :nro_cta_cte %>
+      </div>
+    </div>
+    <div class="panel-footer">          
+        <div class="text-right">
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        </div>
+    </div>
+</div>
+<% end %>

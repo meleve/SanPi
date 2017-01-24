@@ -1,0 +1,49 @@
+<%= form_for(@cierre_caja) do |f| %>
+  <% if @cierre_caja.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cierre_caja.errors.count, "error") %> prohibited this cierre_caja from being saved:</h2>
+
+      <ul>
+      <% @cierre_caja.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :usuario_id %><br>
+    <%= f.number_field :usuario_id %>
+  </div>
+  <div class="field">
+    <%= f.label :fApertura %><br>
+    <%= f.datetime_select :fApertura %>
+  </div>
+  <div class="field">
+    <%= f.label :fCierre %><br>
+    <%= f.datetime_select :fCierre %>
+  </div>
+  <div class="field">
+    <%= f.label :apertura %><br>
+    <%= f.number_field :apertura %>
+  </div>
+  <div class="field">
+    <%= f.label :cierre %><br>
+    <%= f.number_field :cierre %>
+  </div>
+  <div class="field">
+    <%= f.label :entrada %><br>
+    <%= f.number_field :entrada %>
+  </div>
+  <div class="field">
+    <%= f.label :salida %><br>
+    <%= f.number_field :salida %>
+  </div>
+  <div class="field">
+    <%= f.label :estado %><br>
+    <%= f.check_box :estado %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
