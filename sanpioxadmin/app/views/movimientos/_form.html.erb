@@ -1,0 +1,47 @@
+<%= form_for(@movimiento) do |f| %>
+<% if @movimiento.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(@movimiento.errors.count, "error") %> prohibited this movimiento from being saved:</h2>
+    <ul>
+        <% @movimiento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<div class='panel panel-default'>
+    <div class="panel-body">
+        <div class="col-lg-6 form-group">
+                <%= f.label :importe %><br>
+                <%= f.number_field :importe, readonly: 'true' %>
+        </div>
+        <div class="col-lg-6 form-group">
+                <%= f.label :Importe_a_abonar %><br>
+                <%= f.number_field :totalimporte %>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="text-right">
+            <div class="actions">
+                <button type="submit" class=" submit btn btn-success">Actualizar saldo</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden">
+    <%= f.label :cta_cte_id %><br>
+    <%= f.number_field :cta_cte_id %>
+</div>
+<div class="hidden">
+    <%= f.label :nro_mov %><br>
+    <%= f.number_field :nro_mov %>
+</div>
+<div class="hidden">
+    <%= f.label :descripcion %><br>
+    <%= f.text_field :descripcion %>
+</div>
+<div class="hidden">
+    <%= f.label :estado %><br>
+    <%= f.check_box :estado %>
+</div>
+<% end %>

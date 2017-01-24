@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mov Cajas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Caja</th>
+      <th>Concepto</th>
+      <th>Ingreso</th>
+      <th>Egreso</th>
+      <th>Saldo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mov_cajas.each do |mov_caja| %>
+      <tr>
+        <td><%= mov_caja.caja_id %></td>
+        <td><%= mov_caja.concepto %></td>
+        <td><%= mov_caja.ingreso %></td>
+        <td><%= mov_caja.egreso %></td>
+        <td><%= mov_caja.saldo %></td>
+        <td><%= link_to 'Show', mov_caja %></td>
+        <td><%= link_to 'Edit', edit_mov_caja_path(mov_caja) %></td>
+        <td><%= link_to 'Destroy', mov_caja, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mov caja', new_mov_caja_path %>

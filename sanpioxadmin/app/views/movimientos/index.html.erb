@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Listing Movimientos</h1>
+</div>
+<table class="table table-striped table-hover table-condensed dt-responsive" id="datatable">
+  <thead>
+    <tr>
+      
+      <th>Cta cte</th>
+      <th>Nro mov</th>
+      <th>Descripcion</th>
+      <th>Importe</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos.each do |movimiento| %>
+      <tr>
+        <td><%= movimiento.cta_cte_id %></td>
+        <td><%= movimiento.nro_mov %></td>
+        <td><%= movimiento.descripcion %></td>
+        <td><%= movimiento.importe %></td>
+        <td><%= movimiento.estado %></td>
+        <th></th>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

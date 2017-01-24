@@ -1,0 +1,27 @@
+<p>
+  <strong>Cta cte:</strong>
+  <%= @movimiento.cta_cte_id %>
+</p>
+
+<p>
+  <strong>Nro mov:</strong>
+  <%= @movimiento.nro_mov %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @movimiento.descripcion %>
+</p>
+
+<p>
+  <strong>Importe:</strong>
+  <%= @movimiento.importe %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @movimiento.estado %>
+</p>
+
+<%= link_to 'Edit', edit_movimiento_path(@movimiento) %> |
+<%= link_to 'Back', movimientos_path %>
