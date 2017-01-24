@@ -7,11 +7,7 @@
   <thead>
     <tr>
       <th>C.I.Nº</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      
-      <th></th>
-      <th></th>
+      <th>Nombre y Apellido</th>
       <th></th>
     </tr>
   </thead>
@@ -20,16 +16,14 @@
     <% @alumnos.each do |alumno| %>
       <tr>
         <td><%= alumno.ci %></td>
-        <td><%= alumno.nombre %></td>
-        <td><%= alumno.apellido %></td>
-        
-        <td><%= link_to glyph(:eye_open)+'', alumno, class: 'btn btn-link btn-sm' %></td>
-        <td><%= link_to glyph(:pencil)+'', edit_alumno_path(alumno), class: 'btn btn-link btn-sm' %></td>
-        <td><%= link_to glyph(:remove)+'', alumno, class: 'btn btn-link btn-sm', method: :delete, data: { confirm: 'Está seguro?' } %></td>
+        <td><%= alumno.nombre %> <%= alumno.apellido %></td>
+        <td><%= link_to glyph(:eye_open)+'', alumno, class: 'btn btn-link btn-sm' %> 
+            <%= link_to glyph(:pencil)+'', edit_alumno_path(alumno), class: 'btn btn-link btn-sm' %> 
+            <%= link_to glyph(:remove)+'', alumno, class: 'btn btn-link btn-sm', method: :delete, data: { confirm: 'Está seguro?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<br>
 
 

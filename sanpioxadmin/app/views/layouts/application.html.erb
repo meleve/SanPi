@@ -176,6 +176,13 @@
    } 
   });
 </script>
+<script>
+$(document).ready(function()
+{
+    $( ".datepicker-input" ).datepicker( "option", "yearRange", "-99:+0" );
+    $( ".datepicker-input" ).datepicker( "option", "maxDate", "+0m +0d" );
+});
+</script>
 
     </body>
 </html>

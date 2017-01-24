@@ -26,9 +26,9 @@
         <%= f.label :ci %><br>
         <%= f.text_field :ci, placeholder: 'C.I.', class: 'form-control input-sm' %>
       </div>
-      <div class="form-group col-lg-4">
+      <div class="col-lg-4 form-group input-daterange" data-provide="datepicker">
         <%= f.label :Fecha_de_Nacimiento %><br>
-        <%= f.date_select :fechanac, placeholder: 'Fecha de Nac.', class: 'form-control input-sm' %>
+        <%= f.text_field :fechanac, placeholder: 'Fecha de Nac.', hide_label: true, class: 'form-control input-sm datepicker' , id: 'fechanac', required: '', autocomplete: 'off', 'data-date-format' => 'dd/mm/yyyy' %>
       </div>
       <div class="form-group col-lg-4">
         <%= f.label :Lugar_de_Nac %><br>
