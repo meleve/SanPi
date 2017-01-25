@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +10,13 @@
 <%= nav_bar :static  => :top , brand: " SPX",:alt => " SPX", :title => " SPX" , :responsive => true do %>
         <%= menu_group do %>
         <% if usuario_signed_in? %>
-        <%= menu_item " Registro de Alumnos", "/alumnos" %>
-        <%= menu_item " Curso", "/cursos" %>
-        <%= menu_item " Matriculacion", "/matriculacions" %>
+        <%= menu_item " Alumnos", "/alumnos" %>
+        <%= menu_item " Curso-Matriculación", "/cursos" %>
         <%= menu_item " Productos", "/productos" %>
+        <%= menu_item " Pagos de servicios", "/pagos_servicios" %>
         <%= menu_item " Caja", "/cajas" %>
         <%= menu_item " Mov", "/mov_cajas" %>
         <%= menu_item " Cierre", "/cierre_cajas" %>
-        <%= menu_item " Pagos de servicios", "/pagos_servicios" %>
         <% end %>
 <% end %>
         <%= menu_group pull: :right do %>

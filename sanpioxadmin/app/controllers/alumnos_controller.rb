@@ -34,13 +34,21 @@ before_filter do
   end
 
   # GET /alumnos/new
-  def new
+  def buscar
+    @alumno = Alumno.new
+    if params[:alumno][:nombrema]
+      @alumnos = Alumno.where(nombrema: params[:alumno][:nombrema])
+    end
+  end
+
+   def new
     @alumno = Alumno.new
   end
 
   # GET /alumnos/1/edit
   def edit
   end
+
 
   # POST /alumnos
   # POST /alumnos.json

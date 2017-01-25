@@ -68,7 +68,7 @@
         <td><%= producto.nombreproduct %></td>
         <td><%= producto.descripcion %></td>
         <td>
-          <input type="number" name="<%= producto.id %>" class="form-control input-sm" autocomplete="off" value="<%= producto.cantidad %>">
+          <input type="number" name="<%= producto.id %>" class="form-control input-sm" autocomplete="off" value="<%= producto.cantidad %>" min="1" max="<%= producto.cantidad %>">
         </td>
         <td><%= producto.precio %></td>
         <td><%= check_box_tag "productos_id[]", producto.id %></td>

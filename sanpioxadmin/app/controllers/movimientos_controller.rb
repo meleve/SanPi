@@ -111,7 +111,37 @@ class MovimientosController < ApplicationController
          cant = params[pid]
          resultado = producto.cantidad.to_i - cant.to_i
          producto.update(cantidad: resultado)
+
+         @caja = Caja.where(estado: 0).last
+         @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: "Venta de "+producto.nombreproduct, ingreso: cant.to_i * producto.precio.to_i, egreso: 0, saldo: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i))
+         @caja.update(cierre: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i), entrada:  @caja.entrada.to_i + (cant.to_i * producto.precio.to_i))
       end
+    end
+    respond_to do |format|
+      params[:movimientos_id].each do |id|
+        movimiento = Movimiento.find(id)
+        cta_cte = CtaCte.find(movimiento.cta_cte_id)
+        matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
+        format.html { redirect_to matriculacion, notice: 'Movimiento was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
+  end 
+
+  def pago_masivo
+    cta = CtaCte.new
+    id = 0
+    params[:movimientos_id].each do |id|
+      movimiento = Movimiento.find(id)
+      cta_cte = CtaCte.find(movimiento.cta_cte_id)
+      id = cta_cte.id
+      saldo = cta_cte.montoimporte.to_i - movimiento.importe.to_i
+      cta_cte.update(montoimporte: saldo.to_i)
+
+      @caja = Caja.where(estado: 0).last
+      @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: movimiento.descripcion, ingreso: movimiento.importe.to_i, egreso: 0, saldo: @caja.cierre.to_i + movimiento.importe.to_i)
+      @caja.update(cierre: @caja.cierre.to_i + movimiento.importe.to_i, entrada:  @caja.entrada.to_i + movimiento.importe.to_i)
+      movimiento.update(importe: 0, estado: true)
     end
     respond_to do |format|
       params[:movimientos_id].each do |id|
