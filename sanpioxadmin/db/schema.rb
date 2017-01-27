@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120014525) do
+ActiveRecord::Schema.define(version: 20170126193309) do
 
   create_table "alumnos", force: :cascade do |t|
     t.string   "nombre",      limit: 255
@@ -93,6 +93,31 @@ ActiveRecord::Schema.define(version: 20170120014525) do
   end
 
   add_index "detalle_cursos", ["curso_id"], name: "detalle_cursos_curso_id_fk", using: :btree
+
+  create_table "detalle_facturas", force: :cascade do |t|
+    t.integer  "factura_id",       limit: 4
+    t.integer  "matriculacion_id", limit: 4
+    t.integer  "nro_mov",          limit: 4
+    t.string   "descripcion",      limit: 255
+    t.integer  "importe",          limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "detalle_facturas", ["factura_id"], name: "detalle_facturas_factura_id_fk", using: :btree
+  add_index "detalle_facturas", ["matriculacion_id"], name: "detalle_facturas_matriculacion_id_fk", using: :btree
+
+  create_table "facturas", force: :cascade do |t|
+    t.integer  "usuario_id", limit: 4
+    t.integer  "alumno_id",  limit: 4
+    t.integer  "nro_fac",    limit: 4
+    t.integer  "total",      limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "facturas", ["alumno_id"], name: "facturas_alumno_id_fk", using: :btree
+  add_index "facturas", ["usuario_id"], name: "facturas_usuario_id_fk", using: :btree
 
   create_table "matriculacions", force: :cascade do |t|
     t.integer  "alumno_id",  limit: 4

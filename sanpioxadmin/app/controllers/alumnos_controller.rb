@@ -33,14 +33,17 @@ before_filter do
   def show
   end
 
+  def detallespago
+  end
   # GET /alumnos/new
   def buscar
     @alumno = Alumno.new
-    if params[:alumno][:nombrema]
-      @alumnos = Alumno.where(nombrema: params[:alumno][:nombrema])
-    end
+    
   end
-
+def busqueda
+    @alumno = Alumno.new
+     @alumnos = Alumno.where(nombrema: params[:alumno][:nombrema])
+  end
    def new
     @alumno = Alumno.new
   end

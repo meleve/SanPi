@@ -131,6 +131,8 @@ class MovimientosController < ApplicationController
   def pago_masivo
     cta = CtaCte.new
     id = 0
+    @total = 0
+    @matriculacion = nil
     params[:movimientos_id].each do |id|
       movimiento = Movimiento.find(id)
       cta_cte = CtaCte.find(movimiento.cta_cte_id)
@@ -140,16 +142,23 @@ class MovimientosController < ApplicationController
 
       @caja = Caja.where(estado: 0).last
       @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: movimiento.descripcion, ingreso: movimiento.importe.to_i, egreso: 0, saldo: @caja.cierre.to_i + movimiento.importe.to_i)
+      @total = @total.to_i + movimiento.importe.to_i
       @caja.update(cierre: @caja.cierre.to_i + movimiento.importe.to_i, entrada:  @caja.entrada.to_i + movimiento.importe.to_i)
-      movimiento.update(importe: 0, estado: true)
+      
+      @matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
     end
+    factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
+    factura.update(nro_fac: factura.id)
     respond_to do |format|
       params[:movimientos_id].each do |id|
         movimiento = Movimiento.find(id)
         cta_cte = CtaCte.find(movimiento.cta_cte_id)
         matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
+        detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe)
+        
+        movimiento.update(importe: 0, estado: true)
         format.html { redirect_to matriculacion, notice: 'Movimiento was successfully destroyed.' }
-        format.json { head :no_content }
+        format.json { render :show, status: :ok, location: matriculacion }
       end
     end
   end 
@@ -157,10 +166,19 @@ class MovimientosController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_nro_fac
+      @ultimofactura = Factura.select(:id).last
+      if @ultimofactura = nil
+       return 1
+      else
+        @ultimofactura = @ultimofactura.to_i + 1
+        return @ultimofactura
+      end
+    end
+
     def set_movimiento
       @movimiento = Movimiento.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def movimiento_params
       params.require(:movimiento).permit(:cta_cte_id, :nro_mov, :descripcion, :importe, :estado, :totalimporte)

@@ -12,12 +12,7 @@ class MatriculacionsController < ApplicationController
   def index
     @matriculacions = Matriculacion.where("curso_id LIKE ? ","%1%")
   end
-  def index2
-    @matriculacions = Matriculacion.where("curso_id LIKE ? ","%2%")
-  end
-  def index3
-    @matriculacions = Matriculacion.where("curso_id LIKE ? ","%3%")
-  end
+  
 
 
   # GET /matriculacions/1
@@ -123,7 +118,7 @@ class MatriculacionsController < ApplicationController
       end
     end
     #Matriculacion.update(params[:matriculacions].keys, params[:matriculacions].values)
-    redirect_to matriculacions_url
+    redirect_to cursos_url
   end
   
 

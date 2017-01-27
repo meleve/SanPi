@@ -32,9 +32,9 @@
             <%= f.label :seccion %><br>
             <%= f.select :seccion, options_for_select([['Unica' ,'Unica'], ['A', 'A'], ['B' ,'B']]), { prompt: false}, {:class=>'form-control input-sm'}  %>
         </div>
-        <div class="field">
+        <div class="form-group col-lg-3">
             <%= f.label :Año %><br>
-            <%= f.number_field :year %>
+            <%= f.number_field :year, placeholder: 'Año', class: 'form-control input-sm' %>
         </div>
         <!-- Tabla de detalle-->
         <div class="row">

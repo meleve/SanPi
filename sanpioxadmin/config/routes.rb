@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  resources :detalle_facturas
+  resources :facturas
   resources :pagos_servicios
   resources :cierre_cajas
   resources :mov_cajas
@@ -12,15 +14,14 @@ Rails.application.routes.draw do
  resources :movimientos do
     collection do
       put :pago_conjunto
+      put :pago_masivo
     end
   end
   resources :cta_ctes
   resources :matriculacions do
     collection do
       get :edit_multiple
-      put :update_multiple
-      get :index2
-      get :index3 
+      put :update_multiple 
     end
   end
 
