@@ -1,5 +1,11 @@
-<h1>Producto Nuevo</h1>
+<div class=" panel panel-default">
+	<div class=" panel-heading">
+		<h1> <center>PRODUCTO NUEVO </center> </h1>
+	</div>
+</div>
+
+
 
 <%= render 'form' %>
 
-<%= link_to 'Salir', productos_path %>
+<%= link_to glyph(:arrow_left)+' Salir', productos_path, class: 'btn btn-link btn-sm' %>

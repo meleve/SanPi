@@ -1,34 +1,43 @@
-        <p>
-        <strong>Ci:</strong>
-        <%= @alumno.ci %></p>
-        <p>
-        <strong>Nombre y Apellido:</strong>
-        <%= @alumno.nombre %> <%= @alumno.apellido %>
-        </p>
-        <p>
-        <strong>Fecha y Lugar de Nacimiento:</strong>
-        <%= @alumno.fechanac %> <%= @alumno.lugarnac %>
-        </p>
-        <p>
-        <strong>Domicilio:</strong>
-        <%= @alumno.domicilio %>
-        </p>
-        <p>
-        <strong>Nombre de la Madre y Profesion:</strong>
-        <%= @alumno.nombrema %> <%= @alumno.profesionma %>
-        </p>
-        <p>
-        <strong>Contacto Madre:</strong>
-        <%= @alumno.cel %>
-        </p>
-        <p>
-        <strong>Nombre del Padre y Profesion:</strong>
-        <%= @alumno.nombrepa %> <%= @alumno.porfesionpa %>
-        </p>
-        <p>
-        <strong>Contacto Padre:</strong>
-        <%= @alumno.celpa %>
-        </p>
-<%= link_to glyph(:arrow_left) + 'Volver', alumnos_path %>
-<%= link_to glyph(:pencil) + 'Editar', edit_alumno_path(@alumno)%> 
 
+   <p>
+      <strong>Ci:</strong>
+      <%= @alumno.ci %>
+   </p>
+   <p>
+      <strong>Nombre y Apellido:</strong>
+      <%= @alumno.nombre %> <%= @alumno.apellido %>
+   </p>
+   <p>
+      <strong>Fecha y Lugar de Nacimiento:</strong>
+      <%= @alumno.fechanac %> <%= @alumno.lugarnac %>
+   </p>
+   <p>
+      <strong>Domicilio:</strong>
+      <%= @alumno.domicilio %>
+   </p>
+   <p>
+      <strong>Nombre de la Madre: </strong>
+      <%= @alumno.nombrema %> 
+   </p>
+   <p>
+      <strong>Profesion de la Madre/Tutor:</strong>
+      <%= @alumno.profesionma %>
+   </p>
+   <p>
+      <strong>Contacto Madre:</strong>
+      <%= @alumno.cel %>
+   </p>
+   <p>
+      <strong>Nombre del Padre:</strong>
+      <%= @alumno.nombrepa %>
+   </p>
+   <p>
+      <strong>Profesion de la Madre/Tutor:</strong>
+      <%= @alumno.porfesionpa %>
+   </p>
+   <p>
+      <strong>Contacto Padre:</strong>
+      <%= @alumno.celpa %>
+   </p>
+<%= link_to glyph(:arrow_left) + 'Volver', alumnos_path %>
+<%= link_to glyph(:pencil) + 'Editar', edit_alumno_path(@alumno)%>

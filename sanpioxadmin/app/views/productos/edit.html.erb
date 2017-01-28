@@ -1,6 +1,11 @@
-<h1>Editing Producto</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>Editar</h1>
+	</div>
+</div>
+
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @producto %> |
-<%= link_to 'Back', productos_path %>
+ 
+<%= link_to glyph(:arrow_left)+'Volver', productos_path, class: 'btn btn-link btn-sm' %>
+<%= link_to glyph(:eye_open) +'', @producto, class: 'btn btn-link btn-sm' %>

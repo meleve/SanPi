@@ -1,5 +1,4 @@
-<h2>Stock de Productos
-<%= link_to glyph(:plus_sign)+ 'Nuevo', new_producto_path, class: 'btn btn-primary btn-sm pull-right' %>
+<h2><center>Stock de Productos</center> <%= link_to glyph(:plus_sign)+ 'Nuevo', new_producto_path, class: 'btn btn-primary btn-sm pull-right' %>
 </h2>
 
 <table class="table table-striped table-hover table-condensed dt-responsive" id="datatable">
@@ -22,14 +21,10 @@
         <td><%= producto.descripcion %></td>
         <td><%= producto.cantidad %></td>
         <td><%= producto.precio %></td>
-        <td><%= link_to 'Ver', producto %></td>
-        <td><%= link_to 'Editar', edit_producto_path(producto) %></td>
-        <td><%= link_to 'Eliminar', producto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to glyph(:eye_open)+'', producto, class: 'btn btn-link btn-sm'  %></td>
+        <td><%= link_to glyph(:pencil)+'', edit_producto_path(producto), class: 'btn btn-link btn-sm' %></td>
+        <td><%= link_to glyph(:remove)+'', producto, method: :delete, class: 'btn btn-link btn-sm' ,data: { confirm: 'Esta seguro que desea eliminar '+ producto.nombreproduct } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-

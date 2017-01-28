@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Pagos de Servicios
+  <h1>Pago de Servicios
   <%= link_to glyph(:plus_sign)+'Pagar', new_pagos_servicio_path, class: 'btn btn-primary btn-sm pull-right' %>
   </h1>
 </div>
@@ -19,7 +19,6 @@
         <td><%= pagos_servicio.monto %></td>
         <td><%= link_to glyph(:eye_open)+'', pagos_servicio, class: 'btn btn-link btn-sm' %>
           <%= link_to glyph(:pencil)+'', edit_pagos_servicio_path(pagos_servicio), class: 'btn btn-link btn-sm' %>
-          <%= link_to glyph(:remove)+'', pagos_servicio, class: 'btn btn-link btn-sm' ,method: :delete, data: { confirm: 'Estas seguro?' } %>
         </td>
       </tr>
     <% end %>

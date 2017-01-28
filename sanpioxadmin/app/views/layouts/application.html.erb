@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SanPioX</title>
+  <title>SanPioXAdmin</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= nav_bar :static  => :top , brand: " SPX",:alt => " SPX", :title => " SPX" , :responsive => true do %>
+<%= nav_bar :static  => :top , brand: "SPX",:alt => "SPX", :title => "SPX" , :responsive => true do %>
         <%= menu_group do %>
         <% if usuario_signed_in? %>
         <%= menu_item " Alumnos", "/alumnos" %>
-        <%= menu_item " Alumnos", "/alumnos/buscar" %>
+        <%= menu_item " Buscar por", "/alumnos/buscar" %>
         <%= menu_item " Curso-Matriculación", "/cursos" %>
         <%= menu_item " Productos", "/productos" %>
         <%= menu_item " Pagos de servicios", "/pagos_servicios" %>
         <%= menu_item " Caja", "/cajas" %>
         <%= menu_item " Factura", "/facturas" %>
-        <%= menu_item " Mov", "/mov_cajas" %>
-        <%= menu_item " Cierre", "/cierre_cajas" %>
         <% end %>
 <% end %>
         <%= menu_group pull: :right do %>
         <% if usuario_signed_in? %>
         <%= menu_item  current_usuario.email , "" %>
-        <%= menu_item  " Editar Perfil", edit_usuario_registration_path %>
-        <%= menu_item  " Salir", destroy_usuario_session_path, method: :delete, :class => 'text-danger',method: :delete, data: { confirm: 'Esta seguro?' }  %>
+        <%= menu_item  " Salir", destroy_usuario_session_path, method: :delete, :class => 'text-danger',method: :delete, data: { confirm: 'Esta seguro que desea salir?' }  %>
         <% else %>
         <%= menu_item  " Entrar", new_usuario_session_path  %>
         <%= menu_item  " Registro", new_usuario_registration_path %>

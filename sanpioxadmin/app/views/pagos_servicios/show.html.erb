@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Servicio:</strong>
   <%= @pagos_servicio.servicio %>
@@ -10,5 +8,4 @@
   <%= @pagos_servicio.monto %>
 </p>
 
-<%= link_to 'Edit', edit_pagos_servicio_path(@pagos_servicio) %> |
-<%= link_to 'Back', pagos_servicios_path %>
+<%= link_to glyph(:arrow_left)+' Volver', pagos_servicios_path, class: 'btn btn-link btn-sm' %>

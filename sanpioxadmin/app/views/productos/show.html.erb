@@ -18,5 +18,5 @@
   <%= @producto.precio %>
 </p>
 
-<%= link_to 'Editar', edit_producto_path(@producto) %> |
-<%= link_to 'Salir', productos_path %>
+<%= link_to glyph(:arrow_left)+' Volver', productos_path, class: 'btn btn-link btn-sm' %>
+<%= link_to glyph(:pencil)+' Editar', edit_producto_path(@producto), class: 'btn btn-link btn-sm' %> 
