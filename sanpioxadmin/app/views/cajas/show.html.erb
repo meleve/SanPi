@@ -1,49 +1,87 @@
+
 <div class="panel panel-default">
+  <div class="panel-heading">
+      <h4><center>INFORME DE CAJA</center></h4>
+    </div>
   <div class="panel-body">
     <div class="col-lg-4">
-      <p>
-        <strong>Usuario:</strong>
+      <div class="form-group">
+      <label class="control-label col-lg-4"> Usuario:</label>
+        <div class=" col-lg-12">
+          <span class="form-control">
           <%= @caja.usuario.email %>
-        </p>
+          </span>
+        </div>  
+      </div>
     </div>
 
     <div class="col-lg-4">
-        <p>
-          <strong>Fechaapertura:</strong>
+      <div class="form-group">
+      <label class="control-label col-lg-12"> Fecha de apertura:</label>
+        <div class=" col-lg-12">
+          <span class="form-control">
           <%= @caja.fechaApertura %>
-        </p>
+          </span>
+        </div>  
+      </div>
     </div>
+
     <div class="col-lg-4">
-        <p>
-          <strong>Fechacierre:</strong>
+      <div class="form-group">
+      <label class="control-label col-lg-12"> Fecha de cierre:</label>
+        <div class=" col-lg-12">
+          <span class="form-control">
           <%= @caja.fechaCierre %>
-        </p>
+          </span>
+        </div>  
+      </div>
     </div>
+
     <div class="col-lg-4">
-      <p>
-          <strong>Apertura:</strong>
+      <div class="form-group">
+      <label class="control-label col-lg-4"> Apertura:</label>
+        <div class=" col-lg-12">
+          <span class="form-control">
           <%= @caja.apertura %>
-        </p>
+          </span>
+        </div>  
+      </div>
     </div>
+
     <div class="col-lg-4">
-        <p>
-          <strong>Cierre:</strong>
+      <div class="form-group">
+      <label class="control-label col-lg-4"> Cierre:</label>
+        <div class=" col-lg-12">
+          <span class="form-control">
           <%= @caja.cierre %>
-        </p>
+          </span>
+        </div>  
+      </div>
     </div>
+
     <div class="col-lg-4">
-      <p>
-          <strong>Entrada:</strong>
+      <div class="form-group">
+      <label class="control-label col-lg-4"> Entrada:</label>
+        <div class=" col-lg-12">
+          <span class="form-control">
           <%= @caja.entrada %>
-        </p>
+          </span>
+        </div>  
+      </div>
     </div>
+    
     <div class="col-lg-4">
-      <p>
-          <strong>Salida:</strong>
+      <div class="form-group">
+      <label class="control-label col-lg-4"> Salida:</label>
+        <div class=" col-lg-12" >
+          <span class="form-control">
           <%= @caja.salida %>
-        </p>
+          </span>
+        </div>  
+      </div>
     </div>
-    <div class="col-lg-4">
+    
+    <div class="hidden">
       <p>
         <strong>Estado:</strong>
         <%= @caja.estado %>
@@ -79,6 +117,7 @@
         </tbody>
       </table>
     </div>
+<%= link_to glyph(:arrow_left)+'Volver', cajas_path, class: 'btn btn-link btn-sm' %>
 </div>
 
-<%= link_to glyph(:arrow_left)+'Volver', cajas_path, class: 'btn btn-link btn-sm' %>
+

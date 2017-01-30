@@ -17,7 +17,7 @@
     <%= f.label :usuario_id %><br>
     <%= f.number_field :usuario_id %>
     </div>
-    <div class="form-group col-lg-6">
+    <div class="hidden">
       <%= f.label :fecha_Apertura %><br>
       <%= f.datetime_select :fechaApertura, placehoolder:'Fecha de Apertura'  %>
     </div>
@@ -25,9 +25,9 @@
       <%= f.label :fechaCierre %><br>
       <%= f.datetime_select :fechaCierre %>
     </div>
-    <div class="form-group col-lg-6">
+    <div class="form-group col-lg-offset-3 col-lg-6">
       <%= f.label :monto_apertura %><br>
-      <%= f.number_field :apertura, placeholder:'monto', class: 'form-control imput-sm' %>
+      <%= f.number_field :apertura, placeholder:'Monto inicial', class: 'form-control imput-sm' %>
     </div>
     <div class="hidden">
       <%= f.label :cierre %><br>
