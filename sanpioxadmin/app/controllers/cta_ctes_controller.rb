@@ -28,7 +28,7 @@ class CtaCtesController < ApplicationController
 
     respond_to do |format|
       if @cta_cte.save
-        format.html { redirect_to @cta_cte, notice: 'Cta cte was successfully created.' }
+        format.html { redirect_to @cta_cte, notice: 'Se creo correctamente.' }
         format.json { render :show, status: :created, location: @cta_cte }
       else
         format.html { render :new }

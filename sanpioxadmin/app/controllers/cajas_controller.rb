@@ -39,7 +39,7 @@ class CajasController < ApplicationController
     respond_to do |format|
       if @caja.save
          @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: 'Apertura de caja', ingreso: @caja.apertura, egreso: 0, saldo: @caja.apertura)
-        format.html { redirect_to @caja, notice: 'Caja was successfully created.' }
+        format.html { redirect_to @caja, notice: 'Se creo correctamente la caja.' }
         format.json { render :show, status: :created, location: @caja }
       else
         format.html { render :new }

@@ -54,7 +54,7 @@ class CursosController < ApplicationController
   def update
     respond_to do |format|
       if @curso.update(curso_params)
-        format.html { redirect_to @curso, notice: 'Curso was successfully updated.' }
+        format.html { redirect_to @curso, notice: 'Se actualizo correctamente' }
         format.json { render :show, status: :ok, location: @curso }
       else
         format.html { render :edit }
@@ -68,7 +68,7 @@ class CursosController < ApplicationController
   def destroy
     @curso.destroy
     respond_to do |format|
-      format.html { redirect_to cursos_url, notice: 'Curso was successfully destroyed.' }
+      format.html { redirect_to cursos_url, notice: 'Se elimino el curso' }
       format.json { head :no_content }
     end
   end

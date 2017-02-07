@@ -30,7 +30,7 @@ class PagosServiciosController < ApplicationController
         @caja = Caja.where(estado: 0).last
         @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: @pagos_servicio.servicio, ingreso: 0, egreso: @pagos_servicio.monto, saldo: @caja.cierre.to_i - @pagos_servicio.monto.to_i)
         @caja.update(cierre: @caja.cierre.to_i - @pagos_servicio.monto.to_i, salida:  @caja.salida.to_i + @pagos_servicio.monto.to_i)
-        format.html { redirect_to @pagos_servicio, notice: 'Pagos servicio was successfully created.' }
+        format.html { redirect_to @pagos_servicio, notice: 'Se registrado el pago correctamente.' }
         format.json { render :show, status: :created, location: @pagos_servicio }
       else
         format.html { render :new }

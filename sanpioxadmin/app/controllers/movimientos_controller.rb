@@ -157,8 +157,8 @@ class MovimientosController < ApplicationController
         detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe)
         
         movimiento.update(importe: 0, estado: true)
-        format.html { redirect_to matriculacion, notice: 'Movimiento was successfully destroyed.' }
-        format.json { render :show, status: :ok, location: matriculacion }
+        format.html { redirect_to factura, notice: 'Movimiento was successfully destroyed.' }
+        format.json { render :show, status: :ok, location: factura }
       end
     end
   end 

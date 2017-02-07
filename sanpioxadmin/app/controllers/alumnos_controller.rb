@@ -60,7 +60,7 @@ def busqueda
 
     respond_to do |format|
       if @alumno.save
-        format.html { redirect_to @alumno, notice: 'Se ha creado correctamente.' }
+        format.html { redirect_to @alumno, notice: 'Se ha registrado correctamente.' }
         format.json { render :show, status: :created, location: @alumno }
       else
         format.html { render :new }
@@ -74,7 +74,7 @@ def busqueda
   def update
     respond_to do |format|
       if @alumno.update(alumno_params)
-        format.html { redirect_to @alumno, notice: 'Alumno was successfully updated.' }
+        format.html { redirect_to @alumno, notice: 'Se actualizo correctamente.' }
         format.json { render :show, status: :ok, location: @alumno }
       else
         format.html { render :edit }
@@ -88,7 +88,7 @@ def busqueda
   def destroy
     @alumno.destroy
     respond_to do |format|
-      format.html { redirect_to alumnos_url, notice: 'Alumno was successfully destroyed.' }
+      format.html { redirect_to alumnos_url, notice: 'Ha eliminado correctamente al alumno.' }
       format.json { head :no_content }
     end
   end
