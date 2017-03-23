@@ -53,7 +53,7 @@ class CajasController < ApplicationController
   def update
     respond_to do |format|
       if @caja.update(caja_params)
-        format.html { redirect_to @caja, notice: 'Caja was successfully updated.' }
+        format.html { redirect_to @caja, notice: 'Se actualizo correctamente.' }
         format.json { render :show, status: :ok, location: @caja }
       else
         format.html { render :edit }

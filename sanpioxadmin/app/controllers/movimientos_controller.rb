@@ -85,7 +85,7 @@ class MovimientosController < ApplicationController
   def destroy
     @movimiento.destroy
     respond_to do |format|
-      format.html { redirect_to movimientos_url, notice: 'Movimiento was successfully destroyed.' }
+      format.html { redirect_to movimientos_url }
       format.json { head :no_content }
     end
   end

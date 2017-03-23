@@ -18,7 +18,7 @@
     <% @cajas.each do |caja| %>
       <tr>
         <td><%= caja.usuario.email %></td>
-        <td><%= caja.fechaApertura %></td>
+        <td><%= caja.fechaApertura.strftime('%m/%d/%Y') %></td>
         <td><%= caja.fechaCierre %></td>
         <td><%= caja.apertura %></td>
         <td class="hidden"><%= caja.cierre %></td>

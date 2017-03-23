@@ -4,11 +4,9 @@ Rails.application.routes.draw do
   resources :detalle_facturas
   resources :facturas
   resources :pagos_servicios
+  resources :cajas
   resources :cierre_cajas
   resources :mov_cajas
-  resources :cajas
-  resources :mov_cajas
-  resources :cajas
   resources :productos
  
  resources :movimientos do
@@ -58,9 +56,6 @@ Rails.application.routes.draw do
     root 'cajas#new'
   end
   
-
-
-
   #root 'alumnos#index'
 
   # Example of regular route:
