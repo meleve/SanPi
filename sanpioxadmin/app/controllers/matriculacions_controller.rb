@@ -19,7 +19,7 @@ class MatriculacionsController < ApplicationController
   # GET /matriculacions/1.json
   def show
     @productos = Producto.all
-    @cta_cte = CtaCte.find(@matriculacion.id) 
+    @cta_cte = CtaCte.where(matriculacion_id: @matriculacion.id).first
     @movimientos = Movimiento.where(cta_cte_id: @cta_cte.id)
   end
 

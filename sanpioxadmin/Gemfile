@@ -19,8 +19,9 @@ group :development do
   gem 'bootstrap-sass', '~> 3.3.6'
   gem 'devise'
   gem 'jquery-ui-rails'
-  gem 'rails4-autocomplete'
   gem 'nested_form_fields'
+  gem 'rails4-autocomplete'
+  
   
 end
 

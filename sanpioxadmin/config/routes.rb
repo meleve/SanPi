@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     end
 
   resources :alumnos do
+    get :autocomplete_alumno_ci, :on => :collection
     collection do
       get "buscar"
       post "busqueda"

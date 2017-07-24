@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery-ui/autocomplete
+//= require jquery-ui
+//= require autocomplete-rails
 //= require nested_form_fields
 //= require_tree .

@@ -13,19 +13,18 @@
 
   <div class='panel panel-default'>
     <div class="panel-body">
-    
+    <%= fields_for @alumno do |a| %>
+      <%= a.autocomplete_field :ci, autocomplete_alumno_ci_alumnos_path, class: 'form-control input-sm', :placeholder => "Ingrese un nombre para buscar", :multiple => false, :update_elements => {:nombre => '#alumno_nombre',:apellido => '#alumno_apellido'}, list: 'alumnos', autofocus: ''  %>
+      
       <div class="form-group col-lg-4">
-        <%= f.label :nombre %><br>
-        <%= f.text_field :nombre, placeholder: 'Nombre', class: 'form-control input-sm' %>
+        <%= a.label :nombre %><br>
+        <%= a.text_field :nombre, placeholder: 'Nombre', class: 'form-control input-sm' %>
       </div>
       <div class="form-group col-lg-4">
-        <%= f.label :apellido %><br>
-        <%= f.text_field :apellido, placeholder: 'Apellido', class: 'form-control input-sm' %>
+        <%= a.label :apellido %><br>
+        <%= a.text_field :apellido, placeholder: 'Apellido', class: 'form-control input-sm' %>
       </div>
-      <div class="form-group col-lg-4">
-        <%= f.label :ci %><br>
-        <%= f.text_field :ci, placeholder: 'C.I.', class: 'form-control input-sm' %>
-      </div>
+      <% end %>
       <div class="col-lg-4 form-group input-daterange" data-provide="datepicker">
         <%= f.label :Fecha_de_Nacimiento %><br>
         <%= f.text_field :fechanac, placeholder: 'Fecha de Nac.', hide_label: true, class: 'form-control input-sm datepicker' , id: 'fechanac', required: '', autocomplete: 'off', 'data-date-format' => 'dd/mm/yyyy' %>
@@ -61,6 +60,11 @@
       <div class="form-group col-lg-4">
           <%= f.label :contacto %><br>
           <%= f.number_field :celpa, placeholder: 'Nro de Telef.', class: 'form-control input-sm' %>
+      </div>
+    
+      <div class="col-lg-6 form-group">
+          <%= f.label :curso_id %><br>
+          <%= collection_select(:curso, :curso_id, Curso.all, :id, :curso, {class: 'form-control input-sm'})  %>
       </div>
     </div>
 
