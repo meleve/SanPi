@@ -27,7 +27,8 @@ class CursosController < ApplicationController
   def create
     @curso = Curso.new(curso_params)
     #@detalle_curso = DetalleCurso.new(detalle_curso_params)
-
+    
+#CREA LOS DETALLES DEL CURSO, LAS CANTIDAD DE CUOTAS
     respond_to do |format|
       if @curso.save
          @detalle_cursos = DetalleCurso.where(curso_id: @curso.id)

@@ -48,6 +48,7 @@ class MatriculacionsController < ApplicationController
       #@detalle_cursos = DetalleCurso.all
       @detalle_cursos = DetalleCurso.where(curso_id: @matriculacion.curso_id)
       @suma = 0
+#CREA LA CUENTA CORRIENTE PARA EL ALUMNO
       @movimiento = Movimiento.new
       @detalle_cursos.each do |detalle|
         (1..detalle.cantidad).each do |i|
@@ -57,8 +58,6 @@ class MatriculacionsController < ApplicationController
           @cta_ct.update(montoimporte: @suma)
         end
       end
-        
-
         format.html { redirect_to @matriculacion, notice: 'Se creo correctamente' }
         format.json { render :show, status: :created, location: @matriculacion }
       else
@@ -95,7 +94,7 @@ class MatriculacionsController < ApplicationController
   def edit_multiple
     @matriculacions = Matriculacion.find(params[:matriculacions_id])
   end
-
+#SELECCION MULTIPLE PARA PAGAR VARIOS  
   def update_multiple
     params[:matriculacions].values.each do |matriculacion|
       @matriculacion = Matriculacion.create(alumno_id: matriculacion['alumno_id'].to_i, curso_id: matriculacion['curso_id'].to_i)

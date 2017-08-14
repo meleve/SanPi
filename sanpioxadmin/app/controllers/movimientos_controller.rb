@@ -49,7 +49,9 @@ class MovimientosController < ApplicationController
       resultado = 0
       @cta_c = CtaCte.find(@movimiento.cta_cte_id)
       @m = Matriculacion.find(@cta_c.matriculacion_id)
-
+#el monto impo = es el total del importe adeudado
+#el mTotal = a la entrega parcial o total que realiza 
+#se resta el importe parcial o total con el importe real
       if @movimiento.estado == false
           if @movimiento.update(movimiento_params)
               impo = @movimiento.importe
@@ -61,7 +63,8 @@ class MovimientosController < ApplicationController
                   @movimiento.update(estado: @movimiento.estado)
                 end
               end
-            #
+#cMonto = es el importe total adeudado
+#el mTotal = a la entrega parcial o total que realiza
             @cta_ct = CtaCte.find(@movimiento.cta_cte_id)
             cMonto = @cta_ct.montoimporte
             monto = cMonto.to_i - mTotal.to_i
@@ -97,14 +100,17 @@ class MovimientosController < ApplicationController
       movimiento = Movimiento.find(id)
       cta_cte = CtaCte.find(movimiento.cta_cte_id)
       id = cta_cte.id
+#montoimporte = es el importe total adeudado
+#importe = al pago total de la deuda
       saldo = cta_cte.montoimporte.to_i - movimiento.importe.to_i
       cta_cte.update(montoimporte: saldo.to_i)
-
+#crear movimiento 
       @caja = Caja.where(estado: 0).last
       @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: movimiento.descripcion, ingreso: movimiento.importe.to_i, egreso: 0, saldo: @caja.cierre.to_i + movimiento.importe.to_i)
       @caja.update(cierre: @caja.cierre.to_i + movimiento.importe.to_i, entrada:  @caja.entrada.to_i + movimiento.importe.to_i)
       movimiento.update(importe: 0, estado: true)
     end
+#seleccion de producto
     if params[:productos_id] != nil
       params[:productos_id].each do |pid|
          producto = Producto.find(pid)
@@ -147,6 +153,7 @@ class MovimientosController < ApplicationController
       
       @matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
     end
+#crea la factura
     factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
     factura.update(nro_fac: factura.id)
     respond_to do |format|

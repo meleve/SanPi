@@ -31,6 +31,7 @@ class CajasController < ApplicationController
 
   # POST /cajas
   # POST /cajas.json
+#SE CREA LA CAJA INGRESANDO EL MONTO DE APERTURA
   def create
     @caja = Caja.new(caja_params)
     @caja.fechaCierre = nil

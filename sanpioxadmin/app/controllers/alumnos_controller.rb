@@ -10,14 +10,22 @@ class AlumnosController < ApplicationController
     method = "#{resource}_params"
   end
   
-  autocomplete :alumno, :ci, :display_value => :ci, :extra_data => [:curso_id,:nombre, :apellido, :fechanac, :lugarnac, :domicilio, :nombrema, :profesionma, :cel, :nombrepa, :porfesionpa, :celpa] do |items|
+  autocomplete :alumno, :ci, :display_value => :ci, :extra_data => [:nombre, :apellido,:fechanac, :lugarnac, :domicilio, :nombrema, :profesionma, :cel, :nombrepa, :porfesionpa, :celpa] do |items|
     respond_to do |format|
      format.json { render :json => @items }
     end
   end
 
   def index
-      @alumnos = Alumno.all
+    #if params[:term]
+      #@alumnos = Alumno.where("ci LIKE '%"+params[:term]+"%'")
+    #else
+       @alumnos = Alumno.all
+        #respond_to do |format|
+        #format.html
+        #format.json { render :json => @alumnos }
+      #end
+    #end
   end
 
 
@@ -38,11 +46,11 @@ class AlumnosController < ApplicationController
   end
 
   def new
-    if params[:search]
-      @alumnos = Alumno.where("ci LIKE '%"+params[:search]+"%'")
+    if params[:term]
+      @alumnos = Alumno.where("ci LIKE '%"+params[:term]+"%'")
     else
-      @alumnos = Alumno.all
-      @alumno = Alumno.new
+        @alumnos = Alumno.all
+        @alumno = Alumno.new
     end
   end
 
@@ -53,6 +61,7 @@ class AlumnosController < ApplicationController
 
   # POST /alumnos
   # POST /alumnos.json
+#AL INSCRIBIRSE LE ALUMNO YA SE GENERA LA CUENTA CORRIENTE CORRESPONDIENTE
   def create
     @alumno = Alumno.new(alumno_params)
 
