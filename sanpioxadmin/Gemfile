@@ -21,6 +21,7 @@ group :development do
   gem 'jquery-ui-rails'
   gem 'nested_form_fields'
   gem 'rails4-autocomplete'
+  #gem 'bullet', '~> 5.6', '>= 5.6.1'
   
   
 end

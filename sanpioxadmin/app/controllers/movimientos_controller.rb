@@ -39,6 +39,7 @@ class MovimientosController < ApplicationController
 
   # PATCH/PUT /movimientos/1
   # PATCH/PUT /movimientos/1.json
+#actualiza el estado de la cuenta corriente 
   def update
     respond_to do |format|
       @monto = 0
@@ -92,7 +93,7 @@ class MovimientosController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+#usa en show de matriculacion 
   def pago_conjunto
     cta = CtaCte.new
     id = 0
@@ -128,12 +129,27 @@ class MovimientosController < ApplicationController
         movimiento = Movimiento.find(id)
         cta_cte = CtaCte.find(movimiento.cta_cte_id)
         matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
-        format.html { redirect_to matriculacion, notice: 'Movimiento was successfully destroyed.' }
-        format.json { head :no_content }
+        #format.html { redirect_to matriculacion, notice: 'Movimiento was successfully destroyed.' }
+        #format.json { head :no_content }
       end
     end
+#crear la factura
+      factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
+      factura.update(nro_fac: factura.id)
+      respond_to do |format|
+        params[:movimientos_id].each do |id|
+          movimiento = Movimiento.find(id)
+          cta_cte = CtaCte.find(movimiento.cta_cte_id)
+          matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
+          detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe)
+          
+          movimiento.update(importe: 0, estado: true)
+          format.html { redirect_to factura, notice: 'Movimiento was successfully destroyed.' }
+          format.json { render :show, status: :ok, location: factura }
+        end
+      end
   end 
-
+#pago_masivo se usa para el buscador que esta en alumnos imprime la factura
   def pago_masivo
     cta = CtaCte.new
     id = 0
