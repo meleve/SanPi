@@ -20,7 +20,7 @@
       </div>
       <div id="<%= alumno.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<%= alumno.nombre %>">
          <div class="panel-body">
-            <div class="col-lg-12">
+            <div class="col-md-6">
                <% alumno.matriculacions.each do |m| %>
                <% if m == alumno.matriculacions.last %>
                <% m.cta_cte.each do |cta| %>
