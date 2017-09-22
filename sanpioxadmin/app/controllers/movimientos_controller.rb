@@ -49,6 +49,7 @@ class MovimientosController < ApplicationController
       mTotal = 0
       resultado = 0
       @total = 0
+      id = 0
       @cta_c = CtaCte.find(@movimiento.cta_cte_id)
       @m = Matriculacion.find(@cta_c.matriculacion_id)
 #el monto impo = es el total del importe adeudado
@@ -74,9 +75,9 @@ class MovimientosController < ApplicationController
             @matriculacion = Matriculacion.find(@cta_ct.matriculacion_id)
 #crea movimiento de pago parcial
             @caja = Caja.where(estado: 0).last
-            @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: @movimiento.descripcion, ingreso: @movimiento.importe.to_i, egreso: 0, saldo: @caja.cierre.to_i + @movimiento.totalimporte.to_i)
-             monto = cMonto.to_i - mTotal.to_i
-            @caja.update(cierre: @caja.cierre.to_i + @movimiento.importe.to_i, entrada:  @caja.entrada.to_i + @movimiento.importe.to_i)
+            @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: @movimiento.descripcion, ingreso: @movimiento.totalimporte.to_i, egreso: 0, saldo: @caja.cierre.to_i + @movimiento.totalimporte.to_i)
+             resultado = impo.to_i - mTotal.to_i
+            @caja.update(cierre: @caja.cierre.to_i + @movimiento.totalimporte.to_i, entrada:  @caja.entrada.to_i + @movimiento.totalimporte.to_i)
             @movimiento.update(importe: resultado, estado: @movimiento.estado)
 
 
