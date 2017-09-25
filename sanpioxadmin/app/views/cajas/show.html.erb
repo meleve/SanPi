@@ -20,7 +20,7 @@
       <label class="control-label col-lg-12"> Fecha de apertura:</label>
         <div class=" col-lg-12">
           <span class="form-control">
-          <%= @caja.fechaApertura.strftime('%m/%d/%Y') %>
+          <%= @caja.fechaApertura.strftime('%d/%m/%Y') %>
           </span>
         </div>  
       </div>
@@ -109,13 +109,13 @@
 
               <tbody>
                 <% @mov_caja.each do |mov| %>
-                  <tr>
-                    <td><%= mov.caja_id %></td>
-                    <td><%= mov.concepto %></td>
-                    <td><%= mov.ingreso %></td>
-                    <td><%= mov.egreso %></td>
-                    <td><%= mov.saldo %></td>
-                  </tr>
+                    <tr>
+                      <td><%= mov.caja_id %></td>
+                      <td><%= mov.concepto %></td>
+                      <td><%= mov.ingreso %></td>
+                      <td><%= mov.egreso %></td>
+                      <td><%= mov.saldo %></td>
+                    </tr>
                 <% end %>
               </tbody>
         </table>

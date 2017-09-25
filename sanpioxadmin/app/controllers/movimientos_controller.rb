@@ -80,7 +80,6 @@ class MovimientosController < ApplicationController
             @caja.update(cierre: @caja.cierre.to_i + @movimiento.totalimporte.to_i, entrada:  @caja.entrada.to_i + @movimiento.totalimporte.to_i)
             @movimiento.update(importe: resultado, estado: @movimiento.estado)
 
-
             format.html { redirect_to @matriculacion, notice: 'Se registro el pago correctamente' }
             format.json { render :show, status: :ok, location: @matriculacion }
           else
@@ -92,6 +91,23 @@ class MovimientosController < ApplicationController
         format.json { render :show, status: :ok, location: @matriculacion }
       end
     end
+
+#crea la factura
+        factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
+        factura.update(nro_fac: factura.id)
+        respond_to do |format|
+          params[:movimientos_id].each do |id|
+            movimiento = Movimiento.find(id)
+            cta_cte = CtaCte.find(movimiento.cta_cte_id)
+            matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
+            detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.totalimporte)
+            
+            movimiento.update(importe: 0, estado: true)
+            format.html { redirect_to factura, notice: 'Factura creada' }
+            format.json { render :show, status: :ok, location: factura }
+          end
+        end
+    
   end
 
   # DELETE /movimientos/1

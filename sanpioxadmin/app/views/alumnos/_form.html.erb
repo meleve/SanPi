@@ -64,6 +64,8 @@
           <%= f.label :curso_id %><br>
           <%= collection_select(:curso, :curso_id, Curso.all, :id, :curso, {class: 'form-control input-sm'})  %>
           
+          <%= collection_select(:curso, :curso_id, Curso.all, :id, :especialidad, {class: 'form-control input-sm'})  %>
+          
       </div>
     </div>
 

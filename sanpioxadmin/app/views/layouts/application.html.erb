@@ -8,16 +8,19 @@
 </head>
 <body>
 <%= nav_bar :static  => :top , brand: "SPX",:alt => "SPX", :title => "SPX" , :responsive => true do %>
-        <%= menu_group do %>
-        <% if usuario_signed_in? %>
-        <%= menu_item " Alumnos", "/alumnos" %>
-        <%= menu_item " Buscar por", "/alumnos/buscar" %>
-        <%= menu_item " Curso-Matriculación", "/cursos" %>
-        <%= menu_item " Productos", "/productos" %>
-        <%= menu_item " Pagos de servicios", "/pagos_servicios" %>
-        <%= menu_item " Caja", "/cajas" %>
-        <%= menu_item " Factura", "/facturas" %>
-        <% end %>
+
+          <%= menu_group do %>
+          <% if usuario_signed_in? %>
+            <%= menu_item " Alumnos", "/alumnos" %> 
+            <%= menu_item " Buscar por", "/alumnos/buscar" %> 
+            <%= menu_item " Curso-Matriculación", "/cursos" %>
+            <%= menu_item " Productos", "/productos" %>
+            <%= menu_item " Pagos de servicios", "/pagos_servicios" %> 
+            <%= menu_item " Caja", "/cajas" %> 
+            <%= menu_item " Factura", "/facturas" %> 
+          
+          <% end %>
+ 
 <% end %>
         <%= menu_group pull: :right do %>
         <% if usuario_signed_in? %>
@@ -49,9 +52,11 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-        $("#movimiento_totalimporte").val("");
-        $("#movimiento_totalimporte").focus();
+ 
+<!-- SCRIPT VALIDACION EN IMPORTE A INGRESAR -->
+<script type="text/javascript">
+  $("#movimiento_totalimporte").val("");
+  $("#movimiento_totalimporte").focus();
   $("form").submit(function(event) {
     var importe = $("#movimiento_importe").val();
     var totalimporte = $("#movimiento_totalimporte").val();
@@ -74,6 +79,7 @@
     }
   })
 </script>
+<!-- SCRIPT TABLA  -->
 <script type="text/javascript">
   $(function(){
     $('.tip').tooltip();
@@ -160,6 +166,7 @@
     }
       });
 </script>
+<!-- SCRIPT PARA SELECCIONAR TODO -->
 <script type="text/javascript">
   $('#selectAll').click(function() {
    if (this.checked) {
@@ -173,6 +180,7 @@
    } 
   });
 </script>
+<!-- SCRIPT DE FECHA Y HORA -->
 <script>
 $(document).ready(function()
 {

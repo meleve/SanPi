@@ -6,11 +6,14 @@
   </script>
 <% end %>
 
-<div class="page-header">
-  <h2>
-    Crear Curso <%= link_to glyph(:plus_sign)+ 'Agregar', new_curso_path, class: 'btn btn-primary btn-sm pull-right' %>
-  </h2>
+<div class='panel panel-default'>
+   <div class="panel-heading">
+      <h2>
+         <center>Crear Curso <%= link_to glyph(:plus_sign), new_curso_path, class: 'btn btn-primary btn-sm tip pull-right', title:'Agregar' %> </center>
+      </h2>
+   </div>
 </div>
+
 <table class="table table-striped table-hover table-condensed dt-responsive" id="datatable">
   <thead>
     <tr>
