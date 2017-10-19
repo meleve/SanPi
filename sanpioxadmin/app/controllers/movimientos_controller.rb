@@ -39,7 +39,7 @@ class MovimientosController < ApplicationController
 
   # PATCH/PUT /movimientos/1
   # PATCH/PUT /movimientos/1.json
-#actualiza el estado de la cuenta corriente 
+  #actualiza el estado de la cuenta corriente 
   def update
     respond_to do |format|
       @monto = 0
@@ -52,9 +52,9 @@ class MovimientosController < ApplicationController
       id = 0
       @cta_c = CtaCte.find(@movimiento.cta_cte_id)
       @m = Matriculacion.find(@cta_c.matriculacion_id)
-#el monto impo = es el total del importe adeudado
-#el mTotal = a la entrega parcial o total que realiza 
-#se resta el importe parcial o total con el importe real
+      #el monto impo = es el total del importe adeudado
+      #el mTotal = a la entrega parcial o total que realiza 
+      #se resta el importe parcial o total con el importe real
       if @movimiento.estado == false
           if @movimiento.update(movimiento_params)
               impo = @movimiento.importe
@@ -66,14 +66,14 @@ class MovimientosController < ApplicationController
                   @movimiento.update(estado: @movimiento.estado)
                 end
               end
-#cMonto = es el importe total adeudado
-#el mTotal = a la entrega parcial o total que realiza
+            #cMonto = es el importe total adeudado
+            #el mTotal = a la entrega parcial o total que realiza
             @cta_ct = CtaCte.find(@movimiento.cta_cte_id)
             cMonto = @cta_ct.montoimporte
             monto = cMonto.to_i - mTotal.to_i
             @cta_ct.update(montoimporte: monto)
             @matriculacion = Matriculacion.find(@cta_ct.matriculacion_id)
-#crea movimiento de pago parcial
+            #crea movimiento de pago parcial
             @caja = Caja.where(estado: 0).last
             @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: @movimiento.descripcion, ingreso: @movimiento.totalimporte.to_i, egreso: 0, saldo: @caja.cierre.to_i + @movimiento.totalimporte.to_i)
              resultado = impo.to_i - mTotal.to_i
@@ -92,7 +92,7 @@ class MovimientosController < ApplicationController
       end
     end
 
-#crea la factura
+        #crea la factura
         factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
         factura.update(nro_fac: factura.id)
         respond_to do |format|
@@ -107,7 +107,6 @@ class MovimientosController < ApplicationController
             format.json { render :show, status: :ok, location: factura }
           end
         end
-    
   end
 
   # DELETE /movimientos/1
@@ -119,7 +118,7 @@ class MovimientosController < ApplicationController
       format.json { head :no_content }
     end
   end
-#usa en show de matriculacion 
+  #usa en show de matriculacion 
   def pago_conjunto
     cta = CtaCte.new
     id = 0
@@ -130,20 +129,38 @@ class MovimientosController < ApplicationController
       movimiento = Movimiento.find(id)
       cta_cte = CtaCte.find(movimiento.cta_cte_id)
       id = cta_cte.id
-#montoimporte = es el importe total adeudado
-#importe = al pago total de la deuda LA ENTREGA
+      #montoimporte = es el importe total adeudado
+      #importe = al pago total de la deuda LA ENTREGA
       saldo = cta_cte.montoimporte.to_i - movimiento.importe.to_i
       cta_cte.update(montoimporte: saldo.to_i)
-#crear movimiento 
+      #crear movimiento 
       @caja = Caja.where(estado: 0).last
       @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: movimiento.descripcion, ingreso: movimiento.importe.to_i, egreso: 0, saldo: @caja.cierre.to_i + movimiento.importe.to_i)
-       @total = @total.to_i + movimiento.importe.to_i
+      @total = @total.to_i + movimiento.importe.to_i
       @caja.update(cierre: @caja.cierre.to_i + movimiento.importe.to_i, entrada:  @caja.entrada.to_i + movimiento.importe.to_i)
       movimiento.update(importe: 0, estado: true)
 
       @matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
     end
-#seleccion de producto
+    matriculacion = nil
+    factura = nil
+    #crea factura
+    factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
+    factura.update(nro_fac: factura.id)
+    respond_to do |format|
+      params[:movimientos_id].each do |id|
+        movimiento = Movimiento.find(id)
+        cta_cte = CtaCte.find(movimiento.cta_cte_id)
+        matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
+        detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe)
+        
+        movimiento.update(importe: movimiento.totalimporte.to_i+detallefactura.importe.to_i, estado: true)
+        format.html { redirect_to factura, notice: 'Movimiento was successfully destroyed.' }
+        format.json { render :show, status: :ok, location: factura }
+      end
+    end
+
+    #seleccion de producto
     if params[:productos_id] != nil
       params[:productos_id].each do |pid|
          producto = Producto.find(pid)
@@ -154,36 +171,13 @@ class MovimientosController < ApplicationController
          @caja = Caja.where(estado: 0).last
          @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: "Venta de "+producto.nombreproduct, ingreso: cant.to_i * producto.precio.to_i, egreso: 0, saldo: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i))
          @caja.update(cierre: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i), entrada:  @caja.entrada.to_i + (cant.to_i * producto.precio.to_i))
-     
-      end
-    end
-    #respond_to do |format|
-     # params[:movimientos_id].each do |id|
-      #  movimiento = Movimiento.find(id)
-       # cta_cte = CtaCte.find(movimiento.cta_cte_id)
-        #matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
-        #format.html { redirect_to matriculacion, notice: 'Correcto pago conjunto*.' }
-        #format.json { head :no_content }
-     # end
-   # end 
-
-    factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
-    factura.update(nro_fac: factura.id)
-    respond_to do |format|
-      params[:movimientos_id].each do |id|
-        movimiento = Movimiento.find(id)
-        cta_cte = CtaCte.find(movimiento.cta_cte_id)
-        matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
-        detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe)
+         detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: nil, descripcion: "pago remera: "+producto.nombreproduct, importe: producto.precio.to_i*cant.to_i)
         
-        movimiento.update(importe: 0, estado: true)
-        format.html { redirect_to factura, notice: 'Movimiento was successfully destroyed.' }
-        format.json { render :show, status: :ok, location: factura }
       end
     end
   end 
 
-#pago_masivo se usa para el buscador que esta en alumnos imprime la factura
+  #pago_masivo se usa para el buscador que esta en alumnos imprime la factura
   def pago_masivo
     cta = CtaCte.new
     id = 0
@@ -203,7 +197,7 @@ class MovimientosController < ApplicationController
       
       @matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
     end
-#crea la factura
+    #crea la factura
     factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
     factura.update(nro_fac: factura.id)
     respond_to do |format|

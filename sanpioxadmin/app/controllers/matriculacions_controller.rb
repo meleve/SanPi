@@ -13,8 +13,6 @@ class MatriculacionsController < ApplicationController
     @matriculacions = Matriculacion.where("curso_id LIKE ? ","%1%")
   end
   
-
-
   # GET /matriculacions/1
   # GET /matriculacions/1.json
   def show
@@ -48,22 +46,22 @@ class MatriculacionsController < ApplicationController
       #@detalle_cursos = DetalleCurso.all
       @detalle_cursos = DetalleCurso.where(curso_id: @matriculacion.curso_id)
       @suma = 0
-#CREA LA CUENTA CORRIENTE PARA EL ALUMNO
+      #CREA LA CUENTA CORRIENTE PARA EL ALUMNO
       @movimiento = Movimiento.new
-      @detalle_cursos.each do |detalle|
-        (1..detalle.cantidad).each do |i|
-          @movimiento = Movimiento.create(cta_cte_id: @cta_cte.id, nro_mov:  i, descripcion: detalle.descripcion , importe: detalle.importe , estado: false)
-          @cta_ct = CtaCte.find(@cta_cte.id)
-          @suma += detalle.importe
-          @cta_ct.update(montoimporte: @suma)
+        @detalle_cursos.each do |detalle|
+          (1..detalle.cantidad).each do |i|
+            @movimiento = Movimiento.create(cta_cte_id: @cta_cte.id, nro_mov:  i, descripcion: detalle.descripcion , importe: detalle.importe , estado: false)
+            @cta_ct = CtaCte.find(@cta_cte.id)
+            @suma += detalle.importe
+            @cta_ct.update(montoimporte: @suma)
+          end
         end
-      end
-        format.html { redirect_to @matriculacion, notice: 'Se creo correctamente' }
-        format.json { render :show, status: :created, location: @matriculacion }
-      else
-        format.html { render :new }
-        format.json { render json: @matriculacion.errors, status: :unprocessable_entity }
-      end
+          format.html { redirect_to @matriculacion, notice: 'Se creo correctamente' }
+          format.json { render :show, status: :created, location: @matriculacion }
+        else
+          format.html { render :new }
+          format.json { render json: @matriculacion.errors, status: :unprocessable_entity }
+        end
     end
   end
 
@@ -94,7 +92,8 @@ class MatriculacionsController < ApplicationController
   def edit_multiple
     @matriculacions = Matriculacion.find(params[:matriculacions_id])
   end
-#SELECCION MULTIPLE PARA PAGAR VARIOS  
+  
+  #SELECCION MULTIPLE PARA PAGAR VARIOS  
   def update_multiple
     params[:matriculacions].values.each do |matriculacion|
       @matriculacion = Matriculacion.create(alumno_id: matriculacion['alumno_id'].to_i, curso_id: matriculacion['curso_id'].to_i)
