@@ -144,7 +144,7 @@ class MovimientosController < ApplicationController
     end
     matriculacion = nil
     factura = nil
-    #crea factura
+    #CREA FACTURA
     factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
     factura.update(nro_fac: factura.id)
     respond_to do |format|
@@ -154,7 +154,7 @@ class MovimientosController < ApplicationController
         matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
         detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe)
         
-        movimiento.update(importe: movimiento.totalimporte.to_i+detallefactura.importe.to_i, estado: true)
+        movimiento.update(importe: movimiento.totalimporte.to_i + detallefactura.importe.to_i, estado: true)
         format.html { redirect_to factura, notice: 'Movimiento was successfully destroyed.' }
         format.json { render :show, status: :ok, location: factura }
       end
@@ -171,7 +171,7 @@ class MovimientosController < ApplicationController
          @caja = Caja.where(estado: 0).last
          @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: "Venta de "+producto.nombreproduct, ingreso: cant.to_i * producto.precio.to_i, egreso: 0, saldo: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i))
          @caja.update(cierre: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i), entrada:  @caja.entrada.to_i + (cant.to_i * producto.precio.to_i))
-         detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: nil, descripcion: "pago remera: "+producto.nombreproduct, importe: producto.precio.to_i*cant.to_i)
+         detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: nil, descripcion: "Pago de: "+producto.nombreproduct, importe: producto.precio.to_i*cant.to_i)
         
       end
     end
