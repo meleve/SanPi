@@ -1,0 +1,18 @@
+
+<%= form_for(@alumno, :url=> busqueda_alumnos_path, :html => { :method => 'post' }) do |f| %>
+
+  <div class='panel panel-default'>
+    <div class="panel-body">
+      <div class="form-group col-lg-offset-3 col-lg-6">
+        <div class="input-group">
+          <%= collection_select(:alumno, :nombrema, Alumno.all, :nombrema, :nombrema, {:prompt => 'Nombre y Apellido'}, class: 'form-control input-default') %>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-success btn-default">Buscar</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<% end %>
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  factura_id: 1
+  matriculacion_id: 1
+  nro_mov: 1
+  descripcion: MyString
+  importe: 1
+
+two:
+  factura_id: 1
+  matriculacion_id: 1
+  nro_mov: 1
+  descripcion: MyString
+  importe: 1

@@ -1,0 +1,233 @@
+<div bgcolor='#e4e4e4' text='#ff6633' link='#666666' vlink='#666666' alink='#ff6633' style='margin:0;font-family:Arial,Helvetica,sans-serif;border-bottom:1'>
+    <table background='' bgcolor='#e4e4e4' width='100%' style='padding:20px 0 20px 0' cellspacing='0' border='0' align='center' cellpadding='0'>
+		<tbody>
+			<tr>
+				<td>
+					<table width='620' border='0' align='center' cellpadding='0' cellspacing='0' bgcolor='#FFFFFF' style='border-radius: 5px;'>
+						<tbody>
+							<tr>
+								<td>
+									<table width='620' border='0' cellspacing='0' cellpadding='0' style='border-bottom:solid 1px #e5e5e5'>
+										<tbody>
+											<tr>
+												<td align='left' valign='top' style='padding:0px 5px 0px 5px' >
+													<table height='20px' width='100%' border='0' cellpadding='0' cellspacing='0'>
+														<tbody>
+															
+															<tr>
+																<td height='10px' valign='top' style='color:#404041;font-size:13px;padding:5px 5px 0px 20px'>
+																</td>
+															</tr>
+															<tr>
+																<td valign='top' style='color:#404041;font-size:13px;padding:5px 5px 0px 20px'>
+																	<strong>Nº Factura:</strong> 
+																	 <%= @factura.nro_fac %>
+																</td>
+															</tr>
+															
+															<tr>
+																<td valign='top' style='color:#404041;font-size:13px;padding:5px 5px 0px 20px'>
+																	<strong>Fecha</strong>
+																	 <%= @factura.created_at.strftime("%m/%d/%Y") %>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+												<td align='left' valign='top' style='padding:0px 5px 0px 5px'>
+													<table height='116' width='100%' border='0' cellpadding='3' cellspacing='3' style='border-right:solid 1px #e5e5e5'>
+														<tbody>
+															<tr>
+																<td height='16' valign='top' style='color:#404041;font-size:13px;padding:15px 5px 0px 5px'>
+																	<strong>Institucion:</strong>
+																</td>
+															</tr>
+															<tr>
+																<td valign='top' style='color:#404041;font-size:12px;padding:0px 5px 0px 5px'>
+																	<p>
+																		Colegio Parroquial Priv. "San Pio X"<br>
+																	</p>
+																																												
+																</td>
+															</tr>
+															<tr>
+																<td height='16' valign='top' style='color:#404041;font-size:13px;padding:0px 5px 0px 5px'>
+																	<strong>Tel:</strong>
+																</td>
+															</tr>
+															<tr>
+																<td valign='top' style='color:#404041;font-size:12px;padding:0px 5px 0px 5px'>
+																	<p>
+																		<a href='tel:061%937%0266%' value='+27619370266' target='_blank'>(071)203778</a><br>
+																	</p>
+																																												
+																</td>
+															</tr>
+															
+														</tbody>
+													</table>
+												</td>
+												<td align='left' valign='top' style='padding:0px 5px 0px 5px'>
+													<table height='146' width='100%' border='0' cellpadding='3' cellspacing='3' >
+														<tbody>
+															<tr>
+																<td height='16' valign='top' style='color:#404041;font-size:13px;padding:15px 5px 0px 5px'>
+																	<strong>Razon Social:</strong>
+																	
+																</td>
+															</tr>
+															<tr>
+																<td valign='top' style='color:#404041;font-size:12px;padding:0px 5px 0px 5px'>
+																	<p>
+																		 <%= @factura.alumno.nombrema %><br>
+																		<br>
+																	</p>
+																																												
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+												<td align='left' valign='top' style='padding:0px 5px 0px 0px'>
+													<table height='140' width='100%' border='0' cellpadding='3' cellspacing='3'>
+														<tbody>
+															<tr>
+																<td height='16' valign='top' style='color:#404041;font-size:13px;padding:15px 5px 0px 5px'>
+																	<strong>TOTAL:</strong>
+																</td>
+															</tr>
+															<tr>
+																<td valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:0px 5px 0px 5px'>
+																	<p>
+																		<%= @factura.total %><br>
+																	</p>
+																</td>
+															</tr>
+															<tr>
+																<td height='16' valign='top' style='color:#404041;font-size:13px;padding:15px 5px 0px 5px'>
+																	<strong>Pago:</strong>
+																</td>
+															</tr>
+															<tr>
+																<td valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:0px 5px 0px 5px'>
+																	<p>
+																		Contado<br>
+																	</p>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+
+												
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td valign='top' style='color:#404041;line-height:16px;padding:25px 20px 0px 20px'>
+									<p>
+										<section style='position: relative;clear: both;margin: 5px 0;height: 1px;border-top: 1px solid #cbcbcb;margin-bottom: 25px;margin-top: 10px;text-align: center;'>
+											<h3 align='center' style='margin-top: -12px;background-color: #FFF;clear: both;width: 180px;margin-right: auto;margin-left: auto;padding-left: 15px;padding-right: 15px; font-family: arial,sans-serif;'>
+												<span>FACTURA</span>
+											</h3>
+										</section>
+									</p>			
+								</td>
+							</tr>
+							<!-- <tr>
+								<td valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:25px 20px 0px 20px'>
+									<p>
+										<span><h2 style='color: #848484; font-family: arial,sans-serif; font-weight: 200;'>Hello from Company,</h2></span>
+									</p>
+									<p>
+										Thanks for shopping at <a href='company.com<' target='_blank'>company.com</a>.<br>
+										<br>We have received your order and we will notify you as soon as we have received your payment.
+									</p>
+								</td>
+							</tr> -->
+						
+							<tr>
+								<td style='color:#404041;font-size:12px;line-height:16px;padding:10px 16px 20px 18px'>
+									<table width='100%' border='0' cellpadding='0' cellspacing='0' style='border-radius:5px;border:solid 1px #e5e5e5'>
+										<tbody>
+											<tr>
+												<td>
+													<table width='570' border='0' cellspacing='0' cellpadding='0'>
+														<tbody>
+															<tr>
+																<td width='15'> 
+																</td>
+																<td align='left' valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:5px 10px 3px 5px;border-bottom:solid 1px #e5e5e5'>			
+																	<strong>Nº</strong>
+																</td>
+																<td align='left' valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:5px 10px 3px 5px;border-bottom:solid 1px #e5e5e5'>			
+																	<strong>Descripcion</strong>
+																</td>
+																<td width='85' align='right' style='color:#404041;font-size:12px;line-height:16px;padding:5px 10px 3px 5px;border-bottom:solid 1px #e5e5e5'>
+																	<strong>Importe</strong>
+																</td>
+															</tr>
+															<% @factura.detalle_facturas.each do |detalle| %>
+																<tr>
+																	<td width='15'> 
+																	</td>
+																	<td align='left' valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:5px 5px 3px 5px;border-bottom:dashed 1px #e5e5e5'>
+																		<%= detalle.nro_mov %> 
+																	</td>
+																	<td align='left' valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:5px 5px 3px 5px;border-bottom:dashed 1px #e5e5e5'>
+																		<%= detalle.descripcion %>  -  <%= detalle.matriculacion.alumno.nombre %> <%= detalle.matriculacion.alumno.apellido %> 
+																	</td>
+																	<td width='85' align='right' valign='top' style='color:#404041;font-size:12px;line-height:16px;padding:5px 5px 3px 5px;border-bottom:dashed 1px #e5e5e5'>
+																		<%= detalle.importe %>
+																	</td>
+																</tr>
+														    <% end %>
+															
+															<tr>
+																<td width=''> 
+																</td>
+																<td width='100' align='left' valign='top' style='color:#404041;font-size:12px;padding:10px 0px 0px 5px'>
+																	<strong>TOTAL:</strong>
+																</td>
+																<td colspan='4' align='right' valign='top' width='115' style='color:#ff6600;font-size:12px;padding:10px 5px 0px 5px'>
+																	<%= @factura.total %>
+																</td>
+															</tr>
+															
+														</tbody>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>		
+									
+							<tr>
+								<td>
+									<table width='550' border='0' cellspacing='0' cellpadding='0'>
+										<tbody>
+											<tr>
+												<td style='color:#404041;font-size:12px;line-height:16px;padding:15px 5px 5px 10px'>
+													Dirección Padre Kreusser c/Juan León Mallorquin<br>
+													Correo: <a href='mailto:colegio.sxp@gmail.com'>colegio.sxp@gmail.com</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+									
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>
+
+<%= link_to 'Salir', facturas_path, class:'btn btn-primary btn-sm' %>
+<%= link_to 'Factura', 'http://localhost:3000/facturas/'+@factura.id.to_s+'.pdf', class: 'btn btn-primary btn-sm', target: '_blank' %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Detalle Facturas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Factura</th>
+      <th>Matriculacion</th>
+      <th>Nro mov</th>
+      <th>Descripcion</th>
+      <th>Importe</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @detalle_facturas.each do |detalle_factura| %>
+      <tr>
+        <td><%= detalle_factura.factura_id %></td>
+        <td><%= detalle_factura.matriculacion_id %></td>
+        <td><%= detalle_factura.nro_mov %></td>
+        <td><%= detalle_factura.descripcion %></td>
+        <td><%= detalle_factura.importe %></td>
+        <td><%= link_to 'Show', detalle_factura %></td>
+        <td><%= link_to 'Edit', edit_detalle_factura_path(detalle_factura) %></td>
+        <td><%= link_to 'Destroy', detalle_factura, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Detalle factura', new_detalle_factura_path %>

@@ -1,0 +1,27 @@
+<p>
+  <strong>Factura:</strong>
+  <%= @detalle_factura.factura_id %>
+</p>
+
+<p>
+  <strong>Matriculacion:</strong>
+  <%= @detalle_factura.matriculacion_id %>
+</p>
+
+<p>
+  <strong>Nro mov:</strong>
+  <%= @detalle_factura.nro_mov %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @detalle_factura.descripcion %>
+</p>
+
+<p>
+  <strong>Importe:</strong>
+  <%= @detalle_factura.importe %>
+</p>
+
+<%= link_to 'Edit', edit_detalle_factura_path(@detalle_factura) %> |
+<%= link_to 'Back', detalle_facturas_path %>

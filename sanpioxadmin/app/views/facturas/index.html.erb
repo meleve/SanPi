@@ -1,0 +1,32 @@
+<div class='panel panel-default'>
+   <div class="panel-heading">
+      <h2>
+      <center>Lista de Factura</center>
+      </h2>
+   </div>
+</div>
+
+<table class="table table-striped table-hover table-condensed dt-responsive" id="datatable">
+  <thead>
+    <tr>
+      <th>Factura Nro</th>
+      <th>Nombre y Apellido</th>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @facturas.each do |factura| %>
+      <tr>
+        <td class="hidden"><%= factura.usuario_id %></td>
+        <td><%= factura.nro_fac %></td>
+        <td><%= factura.alumno.nombre %><%= factura.alumno.apellido %></td>
+        <td><%= factura.total %></td>
+        <td><%= link_to glyph(:eye_open)+'', factura, class: 'btn btn-link btn-sm' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

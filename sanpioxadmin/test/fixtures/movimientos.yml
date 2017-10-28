@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cta_cte_id: 1
+  nro_mov: 1
+  descripcion: MyString
+  importe: 1
+  estado: false
+
+two:
+  cta_cte_id: 1
+  nro_mov: 1
+  descripcion: MyString
+  importe: 1
+  estado: false

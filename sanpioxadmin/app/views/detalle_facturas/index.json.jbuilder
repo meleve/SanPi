@@ -1,0 +1,1 @@
+json.array! @detalle_facturas, partial: 'detalle_facturas/detalle_factura', as: :detalle_factura

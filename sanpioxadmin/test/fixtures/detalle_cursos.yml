@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  curso_id: 1
+  cantidad: 1
+  descripcion: MyString
+  vencimiento: 2016-10-12
+  importe: 1
+
+two:
+  curso_id: 1
+  cantidad: 1
+  descripcion: MyString
+  vencimiento: 2016-10-12
+  importe: 1

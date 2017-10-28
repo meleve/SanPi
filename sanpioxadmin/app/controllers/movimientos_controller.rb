@@ -50,8 +50,7 @@ class MovimientosController < ApplicationController
       resultado = 0
       @total = 0
       id = 0
-      @cta_c = CtaCte.find(@movimiento.cta_cte_id)
-      @m = Matriculacion.find(@cta_c.matriculacion_id)
+      @cta_ct = CtaCte.find(@movimiento.cta_cte_id)
       #el monto impo = es el total del importe adeudado
       #el mTotal = a la entrega parcial o total que realiza 
       #se resta el importe parcial o total con el importe real
@@ -68,20 +67,24 @@ class MovimientosController < ApplicationController
               end
             #cMonto = es el importe total adeudado
             #el mTotal = a la entrega parcial o total que realiza
+            @total = @total.to_i + @movimiento.importe.to_i
+            @matriculacion = Matriculacion.find(@cta_ct.matriculacion_id)
+            factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: mTotal)
+            factura.update(nro_fac: factura.id)
+            detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: @matriculacion.id, nro_mov: @movimiento.nro_mov, descripcion: @movimiento.descripcion, importe: mTotal)
             @cta_ct = CtaCte.find(@movimiento.cta_cte_id)
             cMonto = @cta_ct.montoimporte
             monto = cMonto.to_i - mTotal.to_i
             @cta_ct.update(montoimporte: monto)
-            @matriculacion = Matriculacion.find(@cta_ct.matriculacion_id)
             #crea movimiento de pago parcial
             @caja = Caja.where(estado: 0).last
             @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: @movimiento.descripcion, ingreso: @movimiento.totalimporte.to_i, egreso: 0, saldo: @caja.cierre.to_i + @movimiento.totalimporte.to_i)
-             resultado = impo.to_i - mTotal.to_i
+            resultado = impo.to_i - mTotal.to_i
             @caja.update(cierre: @caja.cierre.to_i + @movimiento.totalimporte.to_i, entrada:  @caja.entrada.to_i + @movimiento.totalimporte.to_i)
-            @movimiento.update(importe: resultado, estado: @movimiento.estado)
+            #@movimiento.update(importe: resultado, estado: @movimiento.estado, totalimporte: mTotal.to_i)
 
-            format.html { redirect_to @matriculacion, notice: 'Se registro el pago correctamente' }
-            format.json { render :show, status: :ok, location: @matriculacion }
+            format.html { redirect_to factura, notice: 'Se registro el pago correctamente' }
+            format.json { render :show, status: :ok, location: factura }
           else
             format.html { render :edit }
             format.json { render json: @movimiento.errors, status: :unprocessable_entity }
@@ -92,21 +95,6 @@ class MovimientosController < ApplicationController
       end
     end
 
-        #crea la factura
-        factura = Factura.create!(usuario_id: current_usuario.id, alumno_id: @matriculacion.alumno_id, total: @total)
-        factura.update(nro_fac: factura.id)
-        respond_to do |format|
-          params[:movimientos_id].each do |id|
-            movimiento = Movimiento.find(id)
-            cta_cte = CtaCte.find(movimiento.cta_cte_id)
-            matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
-            detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.totalimporte)
-            
-            movimiento.update(importe: 0, estado: true)
-            format.html { redirect_to factura, notice: 'Factura creada' }
-            format.json { render :show, status: :ok, location: factura }
-          end
-        end
   end
 
   # DELETE /movimientos/1
@@ -138,7 +126,8 @@ class MovimientosController < ApplicationController
       @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: movimiento.descripcion, ingreso: movimiento.importe.to_i, egreso: 0, saldo: @caja.cierre.to_i + movimiento.importe.to_i)
       @total = @total.to_i + movimiento.importe.to_i
       @caja.update(cierre: @caja.cierre.to_i + movimiento.importe.to_i, entrada:  @caja.entrada.to_i + movimiento.importe.to_i)
-      movimiento.update(importe: 0, estado: true)
+      
+      #movimiento.update(importe: movimiento.importe.to_i - movimiento.importe.to_i, estado: true, totalimporte: importe)
 
       @matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
     end
@@ -152,9 +141,9 @@ class MovimientosController < ApplicationController
         movimiento = Movimiento.find(id)
         cta_cte = CtaCte.find(movimiento.cta_cte_id)
         matriculacion = Matriculacion.find(cta_cte.matriculacion_id)
-        detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe)
+        detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: movimiento.nro_mov, descripcion: movimiento.descripcion, importe: movimiento.importe.to_i)
         
-        movimiento.update(importe: movimiento.totalimporte.to_i + detallefactura.importe.to_i, estado: true)
+        movimiento.update(importe: 0, estado: true, totalimporte: movimiento.importe.to_i)
         format.html { redirect_to factura, notice: 'Movimiento was successfully destroyed.' }
         format.json { render :show, status: :ok, location: factura }
       end
@@ -172,7 +161,7 @@ class MovimientosController < ApplicationController
          @mov_caja = MovCaja.create!(caja_id: @caja.id, concepto: "Venta de "+producto.nombreproduct, ingreso: cant.to_i * producto.precio.to_i, egreso: 0, saldo: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i))
          @caja.update(cierre: @caja.cierre.to_i + (cant.to_i * producto.precio.to_i), entrada:  @caja.entrada.to_i + (cant.to_i * producto.precio.to_i))
          detallefactura = DetalleFactura.create!(factura_id: factura.id, matriculacion_id: matriculacion.id, nro_mov: nil, descripcion: "Pago de: "+producto.nombreproduct, importe: producto.precio.to_i*cant.to_i)
-        
+        factura.update(total: factura.total.to_i+detallefactura.importe.to_i)
       end
     end
   end 

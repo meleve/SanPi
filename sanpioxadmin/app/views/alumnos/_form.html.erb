@@ -14,6 +14,11 @@
   <div class='panel panel-default'>
     <div class="panel-body">
       <%= f.autocomplete_field :ci, autocomplete_alumno_ci_alumnos_path, class: 'form-control input-sm', :placeholder => "Ingrese un nombre para buscar", :multiple => false, :update_elements => {:nombre => '#alumno_nombre',:apellido => '#alumno_apellido',:fechanac => '#alumno_fechanac',:lugarnac => '#alumno_lugarnac',:domicilio => '#alumno_domicilio',:nombrema => '#alumno_nombrema',:profesionma => '#alumno_profesionma',:cel => '#alumno_cel',:nombrepa => '#alumno_nombrepa',:porfesionpa => '#alumno_porfesionpa',:celpa => '#alumno_celpa'}, list: 'alumnos', autofocus: ''  %>
+
+      <div class="form-group col-lg-4">
+        <%= f.label :ci %><br>
+        <%= f.text_field :ci, placeholder: 'Numero de Cedula', class: 'form-control input-sm' %>
+      </div>
       
       <div class="form-group col-lg-4">
         <%= f.label :nombre %><br>
